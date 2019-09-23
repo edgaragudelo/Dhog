@@ -1,0 +1,46 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.AreasDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding AreasCollection}"
+                        AddingNewDataItem="DataGrid_AddingNewDataItem"
+                        RowEditEnded="DataGrid_RowEditEnded">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn x:Name="NameColumn" 
+                                    IsReadOnly="True" 
+                                    DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding BaseLoad}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="DemandaBase" ToolTipService.ToolTip="DemandaBase"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding ImportationLimit}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="LímiteImportación" ToolTipService.ToolTip="LímiteImportación"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding ExportationLimit}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="LímiteExportación" ToolTipService.ToolTip="LímiteExportación"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

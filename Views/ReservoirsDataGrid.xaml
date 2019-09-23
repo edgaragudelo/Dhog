@@ -1,0 +1,99 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.ReservoirsDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding ReservoirsCollection}"
+                        AddingNewDataItem="DataGrid_AddingNewDataItem"
+                        RowEditEnded="DataGrid_RowEditEnded">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn x:Name="NameColumn" 
+                                    IsReadOnly="True" 
+                                    DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding MinLevel}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="VolMínimo" ToolTipService.ToolTip="VolMínimo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding MaxLevel}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="VolMáximo" ToolTipService.ToolTip="VolMáximo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding InitialLevel}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="VolumenInicial" ToolTipService.ToolTip="VolumenInicial"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding FinalLevel}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="VolumenFinal" ToolTipService.ToolTip="VolumenFinal"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Filtration}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Filtración" ToolTipService.ToolTip="Filtración"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding RecoveryFactor}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="FactorRecuperación" ToolTipService.ToolTip="FactorRecuperación"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding SpillagePenalizationFactor}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="FactorPenalizaciónVertimiento" ToolTipService.ToolTip="FactorPenalizaciónVertimiento"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewComboBoxColumn x:Name="CompanyColumn"
+                                        DataMemberBinding="{Binding Company}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding CompaniesScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Empresa" ToolTipService.ToolTip="Empresa"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding StartPeriod}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="EtapaEntrada" ToolTipService.ToolTip="EtapaEntrada"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn x:Name="CaseColumn" DataMemberBinding="{Binding Case}"
+                                    IsReadOnly="True"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Caso" ToolTipService.ToolTip="Caso"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

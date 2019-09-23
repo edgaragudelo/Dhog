@@ -1,0 +1,68 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.PeriodicFuelContractsDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        CanUserInsertRows="False"
+                        NewRowPosition="None"
+                        ItemsSource="{Binding PeriodicFuelContractsCollection}">
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding PeriodDate}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Fecha" ToolTipService.ToolTip="Fecha"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Period}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Periodo" ToolTipService.ToolTip="Periodo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Capacity}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="CapacidadHora" ToolTipService.ToolTip="CapacidadHora"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Min}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="MínimoHora" ToolTipService.ToolTip="MínimoHora"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Cost}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="CostoCombustible" ToolTipService.ToolTip="CostoCombustible"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Case}" 
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Caso" ToolTipService.ToolTip="Caso"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

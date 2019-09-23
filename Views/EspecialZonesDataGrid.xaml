@@ -1,0 +1,48 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.EspecialZonesDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding EspecialZonesCollection}"
+                        AddingNewDataItem="DataGrid_AddingNewDataItem"
+                        RowEditEnded="DataGrid_RowEditEnded">
+
+    <telerik:RadGridView.Columns>
+
+
+        <telerik:GridViewComboBoxColumn x:Name="NameColumn" 
+                                       DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                         EditTriggers="CellClick" 
+                                         Style="{StaticResource ColumnHeaderStyle}"
+                                           ItemsSource="{Binding ElementName=NameColumn}">
+
+
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+
+        <telerik:GridViewDataColumn x:Name="IndiceIniColumn" 
+                                    IsReadOnly="False" 
+                                    DataMemberBinding="{Binding IndiceIni, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="IndiceIni" ToolTipService.ToolTip="IndiceIni"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn  x:Name="IndiceFinColumn" 
+                                    IsReadOnly="False"  DataMemberBinding="{Binding IndiceFin}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="IndiceFin" ToolTipService.ToolTip="IndiceFin"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

@@ -1,0 +1,39 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.BlocksDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding BlocksCollection}"
+                        AddingNewDataItem="DataGrid_AddingNewDataItem"
+                        RowEditEnded="DataGrid_RowEditEnded">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn x:Name="NameColumn" 
+                                    IsReadOnly="True" 
+                                    DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding DurationFactor}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="FactorDuración" ToolTipService.ToolTip="FactorDuración"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding LoadFactor}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="FactorDemanda" ToolTipService.ToolTip="FactorDemanda"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

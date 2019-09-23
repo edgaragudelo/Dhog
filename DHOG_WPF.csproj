@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1E71C14-863E-4DEF-AFBB-777BBA4C1497}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DHOG_WPF</RootNamespace>
+    <AssemblyName>DHOG_WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo barra de tareas-01.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>packages\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.4.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.3.4.2\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.4.11.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>packages\SpreadsheetLight.3.4.11\lib\net40\SpreadsheetLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Controls.Chart.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Charting, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Controls.Charting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FileDialogs, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Controls.FileDialogs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Controls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Controls.Input.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Documents.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>lib\RCWPF\2018.2.620.45\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
+    <Compile Include="CustomControls\CloseableTab.cs" />
+    <Compile Include="CustomControls\CloseableHeader.xaml.cs">
+      <DependentUpon>CloseableHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AccessDBWriter.cs" />
+    <Compile Include="DataAccess\RecursoFuelContractsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicZonesDataAccess.cs" />
+    <Compile Include="DataAccess\PFEquationsDataAccess.cs" />
+    <Compile Include="DataAccess\ExcludingPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\CplexParameterDataAccess.cs" />
+    <Compile Include="DataAccess\ExecutionParametersDataAccess.cs" />
+    <Compile Include="DataAccess\RutasDhogParametersDataAccess.cs" />
+    <Compile Include="DataAccess\ProblemConfigurationParametersDataAccess.cs" />
+    <Compile Include="DataAccess\HydroTopologyDataAccess.cs" />
+    <Compile Include="DataAccess\VariableThermalPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\VariableHydroPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\RiversMappingDataAccess.cs" />
+    <Compile Include="DataAccess\ThermalPlantsMappingDataAccess.cs" />
+    <Compile Include="DataAccess\HydroPlantsMappingDataAccess.cs" />
+    <Compile Include="DataAccess\ReservoirsMappingDataAccess.cs" />
+    <Compile Include="DataAccess\HydroSystemsDataAccess.cs" />
+    <Compile Include="DataAccess\NonConventionalPlantBlocksDataAccess.cs" />
+    <Compile Include="DataAccess\BlocksDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicHydroSystemsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicThermalPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicHydroPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicHydroElementsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicNonConventionalPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodsDataAccess.cs" />
+    <Compile Include="DataAccess\HydroElementsDataAccess.cs" />
+    <Compile Include="DataAccess\DataBaseConverter.cs" />
+    <Compile Include="DataAccess\AreasDataAccess.cs" />
+    <Compile Include="DataAccess\FuelContractsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicCompaniesDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicReservoirsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicLoadBlocksDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicFuelContractsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicFuelsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicBlocksDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicAreasDataAccess.cs" />
+    <Compile Include="DataAccess\FuelsDataAccess.cs" />
+    <Compile Include="DataAccess\ReservoirsDataAccess.cs" />
+    <Compile Include="DataAccess\ScenariosDataAccess.cs" />
+    <Compile Include="DataAccess\NonConventionalPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\EspecialZonesDataAccess.cs" />
+    <Compile Include="DataTypes\CandleDataInfo.cs" />
+    <Compile Include="DataTypes\DataProviders\RecursoFuelContractsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicZonesDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PFEquationsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ExcludingPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\RutasDhogParametersDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ProblemConfigurationParametersDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\HydroTopologyDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\VariableThermalPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\VariableHydroPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\RiversMappingDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ThermalPlantsMappingDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\HydroPlantsMappingDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ReservoirsMappingDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\HydroSystemsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\NonConventionalPlantBlocksDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\BlocksDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicHydroSystemsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicThermalPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicHydroPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicHydroElementsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicNonConventionalPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\AreasDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\HydroElementsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\FuelContractsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicCompaniesDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicReservoirsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicLoadBlocksDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicFuelContractsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicFuelsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicBlocksDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicAreasDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\FuelsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ReservoirsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ScenariosDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\NonConventionalPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\EspecialZonesDataProvider.cs" />
+    <Compile Include="DataTypes\OpenRange.cs" />
+    <Compile Include="DataTypes\ValidatedBoolean.cs" />
+    <Compile Include="Dialogs\ConfigCasoDialog.xaml.cs">
+      <DependentUpon>ConfigCasoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExecutionDialog.xaml.cs">
+      <DependentUpon>ExecutionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportDataSelectionDialog .xaml.cs">
+      <DependentUpon>ExportDataSelectionDialog .xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProblemConfigurationDialog.xaml.cs">
+      <DependentUpon>ProblemConfigurationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ImportSDDPFilesSelectionDialog.xaml.cs">
+      <DependentUpon>ImportSDDPFilesSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AboutDHOGDialog.xaml.cs">
+      <DependentUpon>AboutDHOGDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecursoBasicEntity.cs" />
+    <Compile Include="Models\BasicEntity.cs" />
+    <Compile Include="Models\ExcludingPlants.cs" />
+    <Compile Include="Models\RecursoFuelContract.cs" />
+    <Compile Include="Models\HydroTopology.cs" />
+    <Compile Include="Models\PeriodicZone.cs" />
+    <Compile Include="Models\PFEquation.cs" />
+    <Compile Include="Models\CplexParameter.cs" />
+    <Compile Include="Models\ExecutionParameters.cs" />
+    <Compile Include="Models\RutasDhogParameter.cs" />
+    <Compile Include="Models\ProblemConfigurationParameter.cs" />
+    <Compile Include="Models\ScenariosActivos.cs" />
+    <Compile Include="Models\VariableHydroPlant.cs" />
+    <Compile Include="Models\VariableConventionalPlant.cs" />
+    <Compile Include="Models\FilesReadingParameters.cs" />
+    <Compile Include="Models\FileStructure.cs" />
+    <Compile Include="Models\HydroSystem.cs" />
+    <Compile Include="Models\NameMapping.cs" />
+    <Compile Include="Models\NonConventionalPlantBlock.cs" />
+    <Compile Include="Models\Block.cs" />
+    <Compile Include="Models\Period.cs" />
+    <Compile Include="Models\HydroElement.cs" />
+    <Compile Include="Models\ConventionalPlant.cs" />
+    <Compile Include="Models\FuelContract.cs" />
+    <Compile Include="Models\NonConventionalPlant.cs" />
+    <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\PeriodicCompany.cs" />
+    <Compile Include="Models\PeriodicConventionalPlant.cs" />
+    <Compile Include="Models\PeriodicCostsAndCapacity.cs" />
+    <Compile Include="Models\PeriodicHydroElement.cs" />
+    <Compile Include="Models\PeriodicHydroSystem.cs" />
+    <Compile Include="Models\PeriodicLevels.cs" />
+    <Compile Include="Models\PeriodicNonConventionalPlant.cs" />
+    <Compile Include="Models\PeriodicReservoir.cs" />
+    <Compile Include="Models\PeriodicLoadBlock.cs" />
+    <Compile Include="Models\PeriodicFuelContract.cs" />
+    <Compile Include="Models\PeriodicFuel.cs" />
+    <Compile Include="Models\PeriodicBlock.cs" />
+    <Compile Include="Models\PeriodicArea.cs" />
+    <Compile Include="Models\PeriodicEntity.cs" />
+    <Compile Include="Models\Fuel.cs" />
+    <Compile Include="Models\Reservoir.cs" />
+    <Compile Include="Models\Plant.cs" />
+    <Compile Include="Models\River.cs" />
+    <Compile Include="Models\Scenario.cs" />
+    <Compile Include="DataAccess\AccessDBReader.cs" />
+    <Compile Include="Models\EspecialZone.cs" />
+    <Compile Include="SDDPFilesReader\FilesStructureReader.cs" />
+    <Compile Include="SDDPFilesReader\InputFilesReader.cs" />
+    <Compile Include="SDDPFilesReader\TextFilesReader.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="System\Drawing\KnownColor.cs" />
+    <Compile Include="Util\DateFormater.cs" />
+    <Compile Include="Util\MessageUtil.cs" />
+    <Compile Include="ViewModels\ExcludingPlantsViewModel.cs" />
+    <Compile Include="ViewModels\CplexParameterViewModel.cs" />
+    <Compile Include="ViewModels\ExecutionParametersViewModel.cs" />
+    <Compile Include="ViewModels\RecursoFuelContractViewModel.cs" />
+    <Compile Include="ViewModels\HydroTopologyViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicZoneViewModel.cs" />
+    <Compile Include="ViewModels\RutasDhogParameterViewModel.cs" />
+    <Compile Include="ViewModels\ProblemConfigurationParameterViewModel.cs" />
+    <Compile Include="ViewModels\NameMappingViewModel.cs" />
+    <Compile Include="ViewModels\FilesReadingParametersViewModel.cs" />
+    <Compile Include="ViewModels\HydroSystemViewModel.cs" />
+    <Compile Include="ViewModels\NonConventionalPlantBlockViewModel.cs" />
+    <Compile Include="ViewModels\BlockViewModel.cs" />
+    <Compile Include="ViewModels\PFEquationViewModel.cs" />
+    <Compile Include="ViewModels\ScenariosActivosViewModel.cs" />
+    <Compile Include="ViewModels\VariableHydroPlantViewModel.cs" />
+    <Compile Include="ViewModels\VariableConventionalPlantViewModel.cs" />
+    <Compile Include="ViewModels\RiversRangeViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicConventionalPlantViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicHydroSystemViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicHydroElementViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicNonConventionalPlantViewModel.cs" />
+    <Compile Include="ViewModels\PeriodViewModel.cs" />
+    <Compile Include="ViewModels\AreaViewModel.cs" />
+    <Compile Include="ViewModels\HydroElmentViewModel.cs" />
+    <Compile Include="ViewModels\FuelContractViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicCompanyViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicReservoirViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicLoadBlockViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicFuelContractViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicFuelViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicBlockViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicAreaViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicEntityViewModel.cs" />
+    <Compile Include="ViewModels\FuelViewModel.cs" />
+    <Compile Include="ViewModels\ReservoirViewModel.cs" />
+    <Compile Include="ViewModels\ScenarioViewModel.cs" />
+    <Compile Include="ViewModels\NonConventionalPlantViewModel.cs" />
+    <Compile Include="ViewModels\EspecialZoneViewModel.cs" />
+    <Compile Include="Views\MarginalAverageChart.cs" />
+    <Compile Include="Views\RecursoFuelContractsDataGrid.xaml.cs">
+      <DependentUpon>RecursoFuelContractsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReservoirEvolutionChart.cs" />
+    <Compile Include="Views\MarginalCostsByBlocksChart.cs" />
+    <Compile Include="Views\GenerationByCompanyChart.cs" />
+    <Compile Include="Views\SINReservoirsEvolutionChart.cs" />
+    <Compile Include="Views\HydroTopologyPanel.xaml.cs">
+      <DependentUpon>HydroTopologyPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicZonesDataGrid.xaml.cs">
+      <DependentUpon>PeriodicZonesDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PFEquationsDataGrid.xaml.cs">
+      <DependentUpon>PFEquationsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DailyThermalGenerationChart.cs" />
+    <Compile Include="Views\VariableThermalPlantsDataGrid.xaml.cs">
+      <DependentUpon>VariableThermalPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariableHydroPlantsDataGrid.xaml.cs">
+      <DependentUpon>VariableHydroPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HydroSystemsDataGrid.xaml.cs">
+      <DependentUpon>HydroSystemsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NonConventionalPlantBlocksDataGrid.xaml.cs">
+      <DependentUpon>NonConventionalPlantBlocksDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlocksDataGrid.xaml.cs">
+      <DependentUpon>BlocksDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AreasDataGrid.xaml.cs">
+      <DependentUpon>AreasDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicHydroSystemsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicHydroSystemsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicThermalPlantsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicThermalPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicHydroPlantsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicHydroPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicHydroElmentsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicHydroElmentsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicNonConventionalPlantsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicNonConventionalPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodsDataGrid.xaml.cs">
+      <DependentUpon>PeriodsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HydroElementsDataGrid.xaml.cs">
+      <DependentUpon>HydroElementsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelContractsDataGrid.xaml.cs">
+      <DependentUpon>FuelContractsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicCompaniesDataGrid.xaml.cs">
+      <DependentUpon>PeriodicCompaniesDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicReservoirsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicReservoirsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicLoadBlocksDataGrid.xaml.cs">
+      <DependentUpon>PeriodicLoadBlocksDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicFuelContractsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicFuelContractsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicFuelsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicFuelsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicBlocksDataGrid.xaml.cs">
+      <DependentUpon>PeriodicBlocksDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicAreasDataGrid.xaml.cs">
+      <DependentUpon>PeriodicAreasDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelsDataGrid.xaml.cs">
+      <DependentUpon>FuelsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReservoirsDataGrid.xaml.cs">
+      <DependentUpon>ReservoirsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScenariosDataGrid.xaml.cs">
+      <DependentUpon>ScenariosDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NonConventionalPlantsDataGrid.xaml.cs">
+      <DependentUpon>NonConventionalPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExcludingPlantsDataGrid.xaml.cs">
+      <DependentUpon>ExcludingPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EspecialZonesDataGrid.xaml.cs">
+      <DependentUpon>EspecialZonesDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ZonesListBoxDragDropBehavior.cs" />
+    <Compile Include="Views\PlantsListBoxDragDropBehavior.cs" />
+    <Compile Include="DataAccess\CompaniesDataAccess.cs" />
+    <Compile Include="DataAccess\ZonesDataAccess.cs" />
+    <Compile Include="DataTypes\DataProviders\CompaniesDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ZonesDataProvider.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Zone.cs" />
+    <Compile Include="ViewModels\CompanyViewModel.cs" />
+    <Compile Include="ViewModels\EntitiesCollections.cs" />
+    <Compile Include="ViewModels\ZoneViewModel.cs" />
+    <Compile Include="Views\CompaniesDataGrid.xaml.cs">
+      <DependentUpon>CompaniesDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HydroPlantsDataGrid.xaml.cs">
+      <DependentUpon>HydroPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PeriodicInflowsDataGrid.xaml.cs">
+      <DependentUpon>PeriodicInflowsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ZonesListBox.xaml.cs">
+      <DependentUpon>ZonesListBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ZonesPlantsPanel.xaml.cs">
+      <DependentUpon>ZonesPlantsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ZonesDataGrid.xaml.cs">
+      <DependentUpon>ZonesDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThermalPlantsDataGrid.xaml.cs">
+      <DependentUpon>ThermalPlantsDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ExcelExporter.cs" />
+    <Compile Include="DataAccess\ExcelImporter.cs" />
+    <Compile Include="DataAccess\ResultsReader.cs" />
+    <Compile Include="DataTypes\DataProviders\ResultsDataProvider.cs" />
+    <Compile Include="Dialogs\ImportExcelFileSelectionDialog.xaml.cs">
+      <DependentUpon>ImportExcelFileSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RoutedEventHelper.cs" />
+    <Compile Include="Dialogs\DHOGDataBaseSelectionDialog.xaml.cs">
+      <DependentUpon>DHOGDataBaseSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DataBaseManager.cs" />
+    <Compile Include="DataAccess\DHOGDataBaseDataAccess.cs" />
+    <Compile Include="DataAccess\HydroPlantsDataAccess.cs" />
+    <Compile Include="DataAccess\PeriodicInflowsDataAccess.cs" />
+    <Compile Include="DataAccess\ThermalPlantsDataAccess.cs" />
+    <Compile Include="DataTypes\DataProviders\HydroPlantsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicInflowsDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ThermalPlantsDataProvider.cs" />
+    <Compile Include="Dialogs\ExportDataSelectionDialogInputs.xaml.cs">
+      <DependentUpon>ExportDataSelectionDialogInputs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DataSeriesViewModel.cs" />
+    <Compile Include="DataTypes\ChartDataPoint.cs" />
+    <Compile Include="Models\ThermalPlant.cs" />
+    <Compile Include="Models\HydroPlant.cs" />
+    <Compile Include="ViewModels\ChartSeriesCreator.cs" />
+    <Compile Include="ViewModels\DHOGDataBaseViewModel.cs" />
+    <Compile Include="ViewModels\InputEntityViewModel.cs" />
+    <Compile Include="ViewModels\HydroPlantViewModel.cs" />
+    <Compile Include="Models\PeriodicInflow.cs" />
+    <Compile Include="ViewModels\InputGroupViewModel.cs" />
+    <Compile Include="ViewModels\OutputEntityViewModel.cs" />
+    <Compile Include="ViewModels\OutputGroupViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicInflowViewModel.cs" />
+    <Compile Include="ViewModels\ThermalPlantViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CollectionBaseViewModel.cs" />
+    <Compile Include="Views\BaseChart.cs" />
+    <Compile Include="Views\ChartPanelView.cs" />
+    <Compile Include="Views\SimpleDataGridView.cs" />
+    <Compile Include="Views\BaseDataGridView.cs" />
+    <Compile Include="Views\SINGenerationChart.cs" />
+    <Page Include="CustomControls\CloseableHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ConfigCasoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ExecutionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ExportDataSelectionDialog .xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ProblemConfigurationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ImportSDDPFilesSelectionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\AboutDHOGDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecursoFuelContractsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HydroTopologyPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PeriodicZonesDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PFEquationsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VariableThermalPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VariableHydroPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HydroSystemsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NonConventionalPlantBlocksDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BlocksDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HydroElementsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CompaniesDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FuelContractsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HydroPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicCompaniesDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicHydroSystemsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicThermalPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicHydroPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicHydroElmentsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicNonConventionalPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicReservoirsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicLoadBlocksDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicFuelContractsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicFuelsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicBlocksDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicAreasDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodicInflowsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AreasDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PeriodsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FuelsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReservoirsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ScenariosDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NonConventionalPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExcludingPlantsDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EspecialZonesDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ZonesListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ZonesPlantsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ZonesDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ThermalPlantsDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\DHOGDataBaseSelectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ImportExcelFileSelectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DHOGMainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataTypes\Types.cs" />
+    <Compile Include="DHOGMainWindow.xaml.cs">
+      <DependentUpon>DHOGMainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Dialogs\ExportDataSelectionDialogInputs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\DHOGDataBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Resource Include="Images\Exportexcel.jpg" />
+    <Resource Include="Images\índice.jpg" />
+    <Resource Include="TextTemplate.ico" />
+    <Resource Include="Images\Logo barra de tareas-01.ico" />
+    <Resource Include="Logo barra de tareas-01.ico" />
+    <Resource Include="Images\propuesta-2.1 %281%29.png" />
+    <Resource Include="Images\Guardar2.png" />
+    <Resource Include="Images\iconoguardar.png" />
+    <Resource Include="Images\ExecuteIcon4.png" />
+    <Resource Include="Images\ExecuteIcon3.png" />
+    <Resource Include="Images\Marcaaguadhog.jpg" />
+    <Resource Include="Images\ExecuteIcon2.png" />
+    <Resource Include="Images\Executesmall.png" />
+    <Resource Include="LogoBarraEdgar1.png" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Messages.resources" />
+    <Resource Include="DHOG_Iconexe.png" />
+    <Resource Include="Images\basedatos.png" />
+    <Resource Include="Images\bdicono.png" />
+    <Resource Include="Images\BasedatosN.png" />
+    <Resource Include="Images\Dhog-propuesta-negro %281%29.png" />
+    <Resource Include="Images\botonexe.png" />
+    <Content Include="Images\DHOGv3.0_Manual_Usuario.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="Resources\FilesStructure.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UserManual.png" />
+    <Resource Include="Images\ExecuteIconSmall.png" />
+    <Resource Include="Images\ProblemConfiguration.png" />
+    <Resource Include="Images\LoadSDDPFiles.png" />
+    <Resource Include="Images\ExportToExcel.png" />
+    <Resource Include="Images\ImportFromExcel.png" />
+    <Resource Include="Images\Scenarios.png" />
+    <Resource Include="Images\MarginalCosts.png" />
+    <Resource Include="Images\Generation.png" />
+    <Resource Include="Images\Zones.png" />
+    <Resource Include="Images\Zones2.png" />
+    <Resource Include="Images\NonConventionalPlants.png" />
+    <Resource Include="Images\ThermalPlants.png" />
+    <Resource Include="Images\HydroElements.png" />
+    <Resource Include="Images\HydroElements2.png" />
+    <Resource Include="Images\HydroPlants.png" />
+    <Resource Include="Images\HydroPlants2.png" />
+    <Resource Include="Images\Fuels2.png" />
+    <Resource Include="Images\Fuels.png" />
+    <Resource Include="Images\Blocks.png" />
+    <Resource Include="Images\Areas.png" />
+    <Resource Include="Images\Companies.png" />
+    <Resource Include="Images\Contracts.png" />
+    <Resource Include="Images\Charts.png" />
+    <Resource Include="Images\About.png" />
+    <Resource Include="Images\DHOG_Icon2.ico" />
+    <Content Include="Images\download_image_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\Period.png" />
+    <Resource Include="Images\ExecuteIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DHOG_Icon.ico" />
+    <Resource Include="Images\DHOG_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

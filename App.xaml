@@ -1,0 +1,70 @@
+﻿<Application x:Class="DHOG_WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             StartupUri="DHOGMainWindow.xaml">
+    
+    <Application.Resources>
+
+        <Style x:Key="ColumnHeaderStyle" TargetType="telerik:GridViewColumn">
+           <Setter Property="ShowFieldFilters" Value="False"/>
+           <Setter Property="ShowFilterButton" Value="False"/>
+        </Style>
+
+        <Style x:Key="RadTabControlHeaderStyle" TargetType="telerik:RadTabControl">
+            <Setter Property="HeaderBackground" Value="Black"/>
+            <!--<Setter Property="Foreground" Value="Black"/>-->
+        </Style>
+
+        <Style x:Key="RadTreeView" TargetType="telerik:RadTreeViewItem">
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+        
+        <Style TargetType="telerik:GridViewHeaderCell">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        
+        <Style TargetType="telerik:GridViewGroupPanelCell" >
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style TargetType="telerik:RadComboBox">
+            <Setter Property="OpenDropDownOnFocus" Value="True"/>
+        </Style>
+
+        <DataTemplate x:Key="ItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding IsChecked}" />
+                <TextBlock Text="{Binding Name}" Margin="5,0" />
+            </StackPanel>
+        </DataTemplate>
+
+        <HierarchicalDataTemplate x:Key="GroupTemplate"
+				ItemsSource="{Binding Entities}"
+				ItemTemplate="{StaticResource ItemTemplate}">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding IsChecked}" />
+                <TextBlock Text="{Binding Name}" Margin="5,0"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <DataTemplate x:Key="InputEntityItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" Margin="5,0" FontWeight="Normal"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        <HierarchicalDataTemplate x:Key="MainWindowGroupItemTemplate" 
+                                  ItemsSource="{Binding Entities}"
+                                  ItemTemplate="{StaticResource InputEntityItemTemplate}">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Image Source="{Binding ImageUri}" />
+                <TextBlock Text="{Binding Name}" Margin="7,0,0,0" FontWeight="SemiBold"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        
+    </Application.Resources>
+</Application>

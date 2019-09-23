@@ -1,0 +1,60 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.PFEquationsDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding PFEquationsCollection}">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewComboBoxColumn DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding HydroPlantsScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Recurso" ToolTipService.ToolTip="Recurso"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewComboBoxColumn DataMemberBinding="{Binding Reservoir}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Path=ReservoirsScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Embalse" ToolTipService.ToolTip="Embalse"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Intercept}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Intercepto" ToolTipService.ToolTip="Intercepto"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding LinearCoefficient}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="CoeficienteLineal" ToolTipService.ToolTip="CoeficienteLineal"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding CuadraticCoefficient}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="CoeficienteCuadrático" ToolTipService.ToolTip="CoeficienteCuadrático"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Case}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Caso" ToolTipService.ToolTip="Caso"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

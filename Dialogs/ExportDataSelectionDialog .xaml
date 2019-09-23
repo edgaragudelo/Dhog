@@ -1,0 +1,53 @@
+﻿<Window x:Class="DHOG_WPF.Dialogs.ExportDataSelectionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:local="clr-namespace:DHOG_WPF.Dialogs"
+        mc:Ignorable="d"
+        Title="Exportar Información a Excel" 
+        Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
+    <Window.Resources>
+        <Style TargetType="telerik:RadTreeViewItem">
+            <Setter Property="IsExpanded" Value="True"/>
+        </Style>
+
+        <DataTemplate x:Key="ItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding IsChecked}" />
+                <TextBlock Text="{Binding Name}" Margin="5,0" />
+            </StackPanel>
+        </DataTemplate>
+
+        <HierarchicalDataTemplate x:Key="GroupTemplate"
+				ItemsSource="{Binding Entities}"
+				ItemTemplate="{StaticResource ItemTemplate}">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding IsChecked}" />
+                <TextBlock Text="{Binding Name}" Margin="5,0"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+
+    <telerik:RadBusyIndicator x:Name="ExportBusyIndicator" IsIndeterminate="True">
+        <DockPanel Width="Auto" Height="Auto">
+            <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" Content="Por favor seleccione la información a exportar." Margin="10,10,0,0"/>
+            <StackPanel DockPanel.Dock="Top">
+                <CheckBox x:Name="SelectAllCheckBox" Content="Seleccionar Todo" Margin="15,10,0,0"
+                          Checked="SelectAllCheckBox_Checked"
+                          Unchecked="SelectAllCheckBox_Unchecked"/>
+            </StackPanel>
+            <Grid x:Name ="InformationGroupsPanel" DockPanel.Dock="Top"  Margin="10" Width="Auto" Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Button DockPanel.Dock="Bottom" x:Name="ExportToExcelButton" Width="150" Height="30" Margin ="30, 0, 0, 30" HorizontalAlignment="Center" Content="Exportar Información" Click="ExportToExcelButton_Click" Focusable="False"/>
+        </DockPanel>
+    </telerik:RadBusyIndicator>
+</Window>

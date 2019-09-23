@@ -1,0 +1,27 @@
+﻿<Window x:Class="DHOG_WPF.Dialogs.DHOGDataBaseSelectionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:local="clr-namespace:DHOG_WPF.Dialogs"
+        mc:Ignorable="d"
+        Title="Selección de Caso" 
+        Height="180" Width="480"
+        Icon="/images/DHOG_Icon2.ico"
+        WindowStartupLocation="CenterOwner">
+    <DockPanel Width="Auto">
+        <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" 
+               Content="Por favor seleccione la base de datos a utilizar. " 
+               Margin="10,10,0,0"/>
+        <StackPanel DockPanel.Dock="Top" Margin="10,10,0,0" Orientation="Horizontal">
+            <TextBox x:Name ="DBFileTextBox" HorizontalAlignment="Center" Width="400" Margin="10,0,0,0"
+                     Text="{Binding InputDBFile, Mode=TwoWay}"/>
+            <Button x:Name ="SelectDBFileButton" Content="..." Width="25" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" Margin="10,0,0,0" Click="SelectDBFileButton_Click"/>
+        </StackPanel>
+        <Button DockPanel.Dock="Bottom" x:Name="LoadDBButton" Width="200" Height="30" Margin ="10" 
+                HorizontalAlignment="Center" Content="Cargar Base de Datos" Click="LoadDBButton_Click" 
+                Focusable="False" />
+    </DockPanel>
+</Window>

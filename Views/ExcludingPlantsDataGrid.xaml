@@ -1,0 +1,32 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.ExcludingPlantsDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding ExcludingPlantsCollection}">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewComboBoxColumn DataMemberBinding="{Binding Plant1}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding ThermalPlantsScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Recurso1" ToolTipService.ToolTip="Recurso1"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewComboBoxColumn DataMemberBinding="{Binding Plant2}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding ThermalPlantsScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Recurso2" ToolTipService.ToolTip="Recurso2"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

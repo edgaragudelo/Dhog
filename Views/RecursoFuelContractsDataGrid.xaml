@@ -1,0 +1,55 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.RecursoFuelContractsDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding RecursoFuelContractsCollection}"
+                        AddingNewDataItem="DataGrid_AddingNewDataItem"
+                        RowEditEnded="DataGrid_RowEditEnded">
+
+    <telerik:RadGridView.Columns>
+        <!--<telerik:GridViewDataColumn x:Name="NameColumn1" 
+                                    IsReadOnly="False" 
+                                    DataMemberBinding="{Binding Name1, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>-->
+
+        <telerik:GridViewComboBoxColumn x:Name="Contrato" 
+                                       DataMemberBinding="{Binding Name1, ValidatesOnExceptions=True}"
+                                         EditTriggers="CellClick" 
+                                         Style="{StaticResource ColumnHeaderStyle}"
+                                           ItemsSource="{Binding ElementName=Contrato}">
+            
+
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewComboBoxColumn x:Name="NameColumn" 
+                                          DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                          EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding ThermalPlantsScenario1}">  
+                <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Recurso" ToolTipService.ToolTip="Recurso"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+
+
+
+      
+
+      
+      
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

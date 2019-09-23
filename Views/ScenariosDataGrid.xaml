@@ -1,0 +1,50 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.ScenariosDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding ScenariosCollection, UpdateSourceTrigger=Explicit}"
+                        CanUserDeleteRows="False"
+                        CanUserInsertRows="False"
+                        NewRowPosition="None">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn x:Name="VariableColumn" 
+                                    IsReadOnly="True" 
+                                    DataMemberBinding="{Binding Variable, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Variable" ToolTipService.ToolTip="Variable"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding CasesQuantity}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="CantidadCasos" ToolTipService.ToolTip="CantidadCasos"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        
+        
+        
+        <telerik:GridViewCheckBoxColumn DataMemberBinding="{Binding IsActive}"
+                                        EditTriggers="CellClick" AutoSelectOnEdit="True"  >
+            <telerik:GridViewCheckBoxColumn.Header>
+                <TextBlock Text="Activo" ToolTipService.ToolTip="Activo"/>
+            </telerik:GridViewCheckBoxColumn.Header>
+        </telerik:GridViewCheckBoxColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding TreePeriod}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="EtapaÁrbol" ToolTipService.ToolTip="EtapaÁrbol"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

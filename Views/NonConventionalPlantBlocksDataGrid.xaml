@@ -1,0 +1,62 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.NonConventionalPlantBlocksDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        ItemsSource="{Binding NonConventionalPlantBlocksCollection}"
+                        AddingNewDataItem="DataGrid_AddingNewDataItem"
+                        RowEditEnded="DataGrid_RowEditEnded">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewComboBoxColumn x:Name="NameColumn"
+                                        IsReadOnly ="False"
+                                        DataMemberBinding="{Binding Name}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding NonConventionalPlantsScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewComboBoxColumn x:Name="BlockColumn"
+                                        IsReadOnly ="False"
+                                        DataMemberBinding="{Binding Block}"
+                                        EditTriggers="CellClick" 
+                                        DisplayMemberPath="Name"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        SelectedValueMemberPath="Name"
+                                        ItemsSource="{Binding BlocksCollection}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Bloque" ToolTipService.ToolTip="Bloque"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewDataColumn Name="ReductionFactor" DataMemberBinding="{Binding ReductionFactor}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="FactorReductor" ToolTipService.ToolTip="FactorReductor"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn Name ="Id" DataMemberBinding="{Binding Id}" IsVisible="False"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Id" ToolTipService.ToolTip="Id"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn Name="Case" DataMemberBinding="{Binding Case}" IsReadOnly="False"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Periodo" ToolTipService.ToolTip="Periodo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

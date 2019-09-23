@@ -1,0 +1,73 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.VariableHydroPlantsDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        AddingNewDataItem="DataGrid_AddingNewDataItem"
+                        RowEditEnded="DataGrid_RowEditEnded"
+                        ItemsSource="{Binding VariableHydroPlantsCollection}">
+
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewComboBoxColumn x:Name="NameColumn" IsReadOnly="True"
+                                        DataMemberBinding="{Binding Name, ValidatesOnExceptions=True}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding HydroPlantsScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Recurso" ToolTipService.ToolTip="Recurso"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewComboBoxColumn x:Name="ReservoirColumn" IsReadOnly="True"
+                                        DataMemberBinding="{Binding Reservoir}"
+                                        EditTriggers="CellClick" 
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding ReservoirsScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Embalse" ToolTipService.ToolTip="Embalse"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewDataColumn x:Name="SegmentColumn" IsReadOnly="True"
+                                    DataMemberBinding="{Binding Segment}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Segmento" ToolTipService.ToolTip="Segmento"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding ProductionFactor}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="FactorConversión" ToolTipService.ToolTip="FactorConversión"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Level}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Volumen" ToolTipService.ToolTip="Volumen"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Max}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="GeneraciónMáxima" ToolTipService.ToolTip="GeneraciónMáxima"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn x:Name="CaseColumn" IsReadOnly="True"
+                                    DataMemberBinding="{Binding Case}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Caso" ToolTipService.ToolTip="Caso"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+
