@@ -68,7 +68,7 @@ namespace DHOG_WPF
 
             StyleManager.ApplicationTheme = new Office2016Theme();
             Office2016Palette.Palette.FontSize = 14;
-            string FechaActivaciondemo = "2019-09-01";
+            string FechaActivaciondemo = "2019-11-01";
             DateTime Fechasys = DateTime.Parse(FechaActivaciondemo);
             Fechasys = Fechasys.AddDays(30);
             int DiasFaltantes;

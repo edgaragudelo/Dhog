@@ -76,17 +76,19 @@ namespace DHOG_WPF.Dialogs
         private void ExportToExcelButton_Click(object sender, RoutedEventArgs e)
         {
             dataTables = new List<DataTable>();
+            DataTable Datos;
             sheetNames = new List<string>();
             foreach (InputGroupViewModel group in inputGroups)
                 foreach (InputEntityViewModel entity in group.Entities)
                     if (entity.IsChecked)
                     {
                         var nnn = ((DataControl)entity.DataGridView).ItemsSource;
-                        
-                        dataTables.Add(nnn as DataTable);
+                        Datos = nnn as DataTable;
+                        dataTables.Add(nnn as DataTable);                       
                         //dataTables.Add(entity.DataGridView.ItemsSource as DataTable);         
                         //sheetNames.Add(entity.ShortName);
                         sheetNames.Add(entity.Name);
+                        //ExcelExporter.ExportDataTableToExcelSheet("archivo", Datos, sheetNames);
                     }
 
             if (dataTables.Any())
