@@ -84,18 +84,17 @@
                     <Label Grid.Row="0" Foreground="White" Background="Black" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Center"
                               Content="{Binding InputDBFile, Mode=TwoWay}" 
                               Margin="2,1,315,0" Grid.RowSpan="2" FontSize="12" Grid.Column="1" Grid.ColumnSpan="4" Height="25"/>
-                    <Button x:Name ="SelectDBFileButton" Grid.Row="0" Grid.Column="4" Content="..." Visibility="Hidden"
-                            Width="25" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFF6C65B" Click="SelectDBFileButton_Click" Grid.RowSpan="2" Margin="0,32,0,50" Height="30" RenderTransformOrigin="0.04,0.577"/>
                     <TextBlock Grid.Row="1" FontWeight="Bold" Foreground="White" Background="Black" VerticalAlignment="Top" HorizontalAlignment="Center"
                              Text="{Binding Description, Mode=TwoWay}"  Margin="142,5,69,0" FontSize="12" Grid.Column="4" Height="26"/>
                     <Label Grid.Row="1" 
                             VerticalAlignment="Top" 
                            Content="{Binding InitialDate}" Margin="10,0,29,0" FontSize="12" FontWeight="Bold" Background="Black"
                            Foreground="White" Grid.Column="5" Width="211" Height="26"/>
-                    <!--<Label Grid.Row="1" 
+
+                    <Label Grid.Row="1" Name="Tipodespa"
                             VerticalAlignment="Top" 
-                           Content="{Binding }" Margin="3.976,0,-214.976,0" FontSize="12" FontWeight="Bold" Background="Black"
-                           Foreground="White" Grid.Column="6" Width="211" Height="26"/>-->
+                            Margin="228.081,0,7.919,0" FontSize="12" FontWeight="Bold" Background="Black" Content="{Binding TipoDespacho}"
+                           Foreground="White" Grid.Column="5" Height="26"/>
 
                 </Grid>
                 <!--<Image Margin="0,0,0,-0.8" Source="LogoBarraEdgar1.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="125" />-->
@@ -162,7 +161,7 @@
                     </telerik:RadMenuItem>-->
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem  x:Name="HelpMenuItem" Header="Ayuda" 
-                                      Style="{StaticResource MenuItemTopLevelStyle}">
+                                      Style="{StaticResource MenuItemTopLevelStyle}" >
                     <telerik:RadMenuItem x:Name="UserManualMenuItem" 
                                          Header="Manual de Usuario" 
                                          Click="UserManualMenuItem_Click"
@@ -259,14 +258,14 @@
                     </telerik:RadTabItem>
                 </telerik:RadTabControl>
                 <GridSplitter Grid.Column="2" Background="Black" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10.6,0"/>
-               
+
                 <telerik:RadTabControl x:Name="InfoTabControl" Grid.Column="2"  SelectionChanged="InfoTabControl_SelectionChanged" 
                                        Grid.ColumnSpan="3" Margin="10,-7,0.333,0.667" Style="{DynamicResource RadTabControlHeaderStyle}" >
-                   
-                       
 
-                     
-                   
+
+
+
+
 
                     <Image Source="Images/Marcaaguadhog.jpg" Stretch="Fill" Margin="0,-7,0.2,0.4" x:Name="Fondo" />
                 </telerik:RadTabControl>

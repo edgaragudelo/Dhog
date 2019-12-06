@@ -72,7 +72,7 @@ namespace DHOG_WPF.Dialogs
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error en el calculo de maximo de escenarios", ex.Message);
                 throw;
             }
             while (reader.Read()) valor1 = (valor1 * Convert.ToDouble(reader[0]));

@@ -26,6 +26,7 @@ using Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.Xlsx;
 using Telerik.Windows.Documents.Spreadsheet.FormatProviders;
 using DataGrid = System.Windows.Controls.DataGrid;
 using System.Threading;
+using System.Configuration;
 
 namespace DHOG_WPF
 {
@@ -38,8 +39,9 @@ namespace DHOG_WPF
         public static double DHOGVersion = 3.2;
         private string lastTabSelected;
         private bool caseLoaded;
+        int Tipocaso = 0;
 
-      
+
         bool isExporting;
 
         //dataTables = new List<DataTable>();
@@ -60,71 +62,45 @@ namespace DHOG_WPF
 
         public string FechaOriginal { get; private set; }
 
+        string Rutain;
+        string Rutaout;
+
         public DHOGMainWindow()
         {
             //var culture = new CultureInfo("en-US");
             //Thread.CurrentThread.CurrentCulture = culture;
             //Thread.CurrentThread.CurrentUICulture = culture;
+            
 
             StyleManager.ApplicationTheme = new Office2016Theme();
             Office2016Palette.Palette.FontSize = 14;
-            string FechaActivaciondemo = "2019-11-01";
+            string FechaActivaciondemo = "2019-12-01";
             DateTime Fechasys = DateTime.Parse(FechaActivaciondemo);
             Fechasys = Fechasys.AddDays(30);
             int DiasFaltantes;
             //string Demo = null;
             //Settings.Default.diasdeprueba =(Fechasys-DateTime.Now).Days ;
             DiasFaltantes = (Fechasys - DateTime.Now).Days;
-
-            //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
-            
-
-            //CultureInfo.InvariantCulture.NumberFormat
-            //CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-
-            //CultureInfo.CurrentUICulture.NumberFormat.CurrencyDecimalSeparator.ToString();
-
-            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-US");
-            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo  .CultureInfo("es-US");
-
-            //CultureInfo culture;
-            //MessageBox.Show("Culture antes:", Thread.CurrentThread.CurrentCulture.ToString());
-
-            //NumberFormatInfo current1 = CultureInfo.CurrentCulture.NumberFormat;
-            //MessageBox.Show("Culture UI:", CultureInfo.CurrentUICulture.NumberFormat.CurrencyDecimalSeparator.ToString());
-            //MessageBox.Show(current1.CurrencyDecimalSeparator,"Culture antes:");
+    
 
             if (DiasFaltantes >0)  //(Fechasys < Settings.Default.diasdeprueba)
             {
-                //culture = CultureInfo.CreateSpecificCulture("en-US");
-                //Thread.CurrentThread.CurrentCulture = culture;
-                //Thread.CurrentThread.CurrentUICulture = culture;
-
-                //MessageBox.Show(current1.CurrencyDecimalSeparator, "Culture despues:");
-                //MessageBox.Show("Culture despues:", Thread.CurrentThread.CurrentCulture.ToString());
-                //System.Windows.MessageBox.Show("Periodo de prueba del aplicativo, quedan " + DiasFaltantes.ToString() + " dias");
-                //Demo = "Periodo de prueba del aplicativo, quedan " + DiasFaltantes.ToString() + " dias";
-                //MessageBox.Show("Periodo de prueba del aplicativo, quedan " + DiasFaltantes.ToString() + " dias", MessageUtil.FormatMessage("LABEL.ExportToExcel"), MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-                //MessageBox.Show(MessageUtil.FormatMessage("WARN.ImportInProgress"),
-                //             MessageUtil.FormatMessage("LABEL.SDDPFilesImportDialog"),
-                //             MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //e.Cancel = true;
-
-
                 convertingDB = false;
                 InitializeComponent();
                 XmlConfigurator.Configure();
                 dhogDataBaseViewModel = DataContext as DHOGDataBaseViewModel;
                 dhogDataBaseViewModel.CaseScenarioChanged += UpdateChartTabs;
                 Show();
-
+                Rutain = ConfigurationManager.AppSettings.Get("RutaEntrada");
+                Rutaout = ConfigurationManager.AppSettings.Get("RutaSalida");
                 DBConversionBusyIndicator.IsBusy = true;
-
+                
                 selectCaseDialog = new DHOGDataBaseSelectionDialog();
                 selectCaseDialog.DataContext = DataContext;
+               
+                selectCaseDialog.DBFileTextBox.Text = Rutain;
+                
+             
                 selectCaseDialog.Owner = this;
 
                 //TODO: Testing code 
@@ -134,7 +110,29 @@ namespace DHOG_WPF
                 selectCaseDialog.ValidDBFile = true;
                 /* End CodeToDelete!!!*/
 
+
+                //Rutain = Settings.Default.RutaEntrada;
+                //Rutaout = Settings.Default.RutaSalida;
+
+
+                dhogDataBaseViewModel.InputDBFile = Rutain;
+                //dhogDataBaseViewModel.OutputDBFile = Rutaout;
                 selectCaseDialog.ShowDialog();
+
+                if (selectCaseDialog.Economico.IsChecked == true)
+                {
+                    Tipocaso = 0;
+                    dhogDataBaseViewModel.TipoDespacho = "Tipo Despacho:Económico";
+                    Tipodespa.Content = "Tipo Despacho:Económico";
+                }
+                if (selectCaseDialog.Hidrotermico.IsChecked == true)
+                {
+                    Tipocaso = 1;
+                    Tipodespa.Content = "Tipo Despacho:Hidrotérmico";
+                    dhogDataBaseViewModel.TipoDespacho = "Tipo Despacho:Hidrotérmico";
+                }
+
+                
 
                 if (selectCaseDialog.ValidDBFile)
                     LoadCase();
@@ -251,7 +249,8 @@ namespace DHOG_WPF
             selectCaseDialog.Owner = this;
             selectCaseDialog.DataContext = DataContext;
             selectCaseDialog.ShowDialog();
-
+            if (selectCaseDialog.Economico.IsChecked == true) Tipocaso = 0;
+            if (selectCaseDialog.Hidrotermico.IsChecked == true) Tipocaso = 1;
             if (selectCaseDialog.ValidDBFile)
             {
                 CloseAllTabs();
@@ -433,6 +432,116 @@ namespace DHOG_WPF
             InputEntitiesTreeView.ItemsSource = InputGroups;
         }
 
+
+
+        private void CreateInputGroupsDespacho()
+        {
+            var culture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+            InputGroups = new ObservableCollection<InputGroupViewModel>();
+
+            ObservableCollection<InputEntityViewModel> entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                //new InputEntityViewModel("DemandaBloque", new PeriodicLoadBlocksDataGrid(EntitiesCollections), EntityType.PeriodicLoadBlock),
+                //new InputEntityViewModel("EscenariosBasica", new ScenariosDataGrid(EntitiesCollections), EntityType.Scenario),
+                new InputEntityViewModel("PeriodoBasica", new PeriodsDataGrid(EntitiesCollections), EntityType.Period),
+            };
+            InputGroups.Add(new InputGroupViewModel("Periodo y Demanda", entitiesInformation, new Uri(@"../Images/Period.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                //new InputEntityViewModel("BloqueBasica", new BlocksDataGrid(EntitiesCollections), EntityType.Block),
+                new InputEntityViewModel("BarraPeriodo", new PeriodicBarraDataGrid(EntitiesCollections), EntityType.PeriodicBarra)
+            };
+            InputGroups.Add(new InputGroupViewModel("Barras", entitiesInformation, new Uri(@"../Images/Blocks.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                //new InputEntityViewModel("AreaBasica", new AreasDataGrid(EntitiesCollections), EntityType.Area),
+                new InputEntityViewModel("AreaPeriodo", new PeriodicAreasDataGrid(EntitiesCollections), EntityType.PeriodicArea)
+            };
+            InputGroups.Add(new InputGroupViewModel("Áreas", entitiesInformation, new Uri(@"../Images/Areas.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                new InputEntityViewModel("LineaBasica", new CompaniesDataGrid(EntitiesCollections), EntityType.Company),
+                new InputEntityViewModel("LineaPeriodo", new PeriodicCompaniesDataGrid(EntitiesCollections), EntityType.PeriodicCompany)
+
+            };
+          InputGroups.Add(new InputGroupViewModel("Lineas", entitiesInformation, new Uri(@"../Images/Companies.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                new InputEntityViewModel("CortePeriodo", new FuelsDataGrid(EntitiesCollections), EntityType.Fuel),
+                new InputEntityViewModel("CorteLinea", new PeriodicFuelsDataGrid(EntitiesCollections), EntityType.PeriodicFuel)
+            };
+            InputGroups.Add(new InputGroupViewModel("Cortes", entitiesInformation, new Uri(@"../Images/Fuels2.png", UriKind.RelativeOrAbsolute)));
+
+            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            //{
+            //    new InputEntityViewModel("ContratoCombustibleBasica", new FuelContractsDataGrid(EntitiesCollections), EntityType.FuelContract),
+            //    new InputEntityViewModel("ContratoCombustiblePeriodo", new PeriodicFuelContractsDataGrid(EntitiesCollections), EntityType.PeriodicFuelContract),
+            //     new InputEntityViewModel("ContratoCombustibleRecurso", new RecursoFuelContractsDataGrid(EntitiesCollections), EntityType.RecursoFuelContract),
+            //};
+            //InputGroups.Add(new InputGroupViewModel("Contratos Combustibles", entitiesInformation, new Uri(@"../Images/Contracts.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                new InputEntityViewModel("UnidadBasica", new PFEquationsDataGrid(EntitiesCollections), EntityType.PFEquation),
+                new InputEntityViewModel("RecursoUnidad", new HydroPlantsDataGrid(EntitiesCollections), EntityType.HydroPlant),
+                new InputEntityViewModel("UnidadPeriodo", new PeriodicHydroPlantsDataGrid(EntitiesCollections), EntityType.PeriodicHydroPlant),
+                //new InputEntityViewModel("RecursoHidroVariable", new VariableHydroPlantsDataGrid(EntitiesCollections), EntityType.VariableHydroPlant),
+            };
+            InputGroups.Add(new InputGroupViewModel("Unidades", entitiesInformation, new Uri(@"../Images/HydroPlants.png", UriKind.RelativeOrAbsolute)));
+
+            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            //{
+            //    new InputEntityViewModel("aportesHidricos", new PeriodicInflowsDataGrid(EntitiesCollections), EntityType.PeriodicInflow),
+            //    new InputEntityViewModel("ElementoHidraulicoBasica", new HydroElementsDataGrid(EntitiesCollections), EntityType.HydroElement),
+            //    new InputEntityViewModel("ElementoHidraulicoPeriodo", new PeriodicHydroElementsDataGrid(EntitiesCollections), EntityType.PeriodicHydroElement),
+            //    new InputEntityViewModel("EmbalseBasica", new ReservoirsDataGrid(EntitiesCollections), EntityType.Reservoir),
+            //    new InputEntityViewModel("EmbalsePeriodo", new PeriodicReservoirsDataGrid(EntitiesCollections), EntityType.PeriodicReservoir),
+            //    new InputEntityViewModel("SistemaHidroBasica", new HydroSystemsDataGrid(EntitiesCollections), EntityType.HydroSystem),
+            //    new InputEntityViewModel("SistemaHidroPeriodo", new PeriodicHydroSystemsDataGrid(EntitiesCollections), EntityType.PeriodicHydroSystem),
+            //   // new InputEntityViewModel("TopologiaHidraulica", new HydroTopologyPanel(EntitiesCollections), EntityType.HydroTopology)
+            //};
+            //InputGroups.Add(new InputGroupViewModel("Elementos Hidráulicos", entitiesInformation, new Uri(@"../Images/HydroElements2.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                new InputEntityViewModel("RecursosBasica", new ExcludingPlantsDataGrid(EntitiesCollections), EntityType.ExcludingPlants),
+                new InputEntityViewModel("RecursoPrecio", new ThermalPlantsDataGrid(EntitiesCollections), EntityType.ThermalPlant),
+                new InputEntityViewModel("RecursoPeriodo", new PeriodicThermalPlantsDataGrid(EntitiesCollections), EntityType.PeriodicThermalPlant),
+                new InputEntityViewModel("RecursoFactiblele", new VariableThermalPlantsDataGrid(EntitiesCollections), EntityType.VariableThermalPlant),
+            };
+            InputGroups.Add(new InputGroupViewModel("Recursos", entitiesInformation, new Uri(@"../Images/ThermalPlants.png", UriKind.RelativeOrAbsolute)));
+
+            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            //{
+            //    new InputEntityViewModel("RecursoNoCoBasica", new NonConventionalPlantsDataGrid(EntitiesCollections), EntityType.NonConventionalPlant),
+            //    new InputEntityViewModel("RecursoNoCoPeriodo", new PeriodicNonConventionalPlantsDataGrid(EntitiesCollections), EntityType.PeriodicNonConventionalPlant),
+            //    new InputEntityViewModel("RecursoNoCoBloque", new NonConventionalPlantBlocksDataGrid(EntitiesCollections), EntityType.NonConventionalPlantBlock)
+            //};
+            //InputGroups.Add(new InputGroupViewModel("Recursos No Convencionales", entitiesInformation, new Uri(@"../Images/NonConventionalPlants.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                new InputEntityViewModel("ZonaUnidad", new ZonesDataGrid(EntitiesCollections), EntityType.Zone),
+                //new InputEntityViewModel("ZonaEspecial", new EspecialZonesDataGrid(EntitiesCollections), EntityType.Zone),
+                new InputEntityViewModel("ZonaPeriodo", new PeriodicZonesDataGrid(EntitiesCollections), EntityType.PeriodicZone),
+              //  new InputEntityViewModel("ZonaRecurso", new ZonesPlantsPanel(EntitiesCollections), EntityType.Zone),
+
+                
+            };
+            InputGroups.Add(new InputGroupViewModel("Zonas de Seguridad", entitiesInformation, new Uri(@"../Images/Zones2.png", UriKind.RelativeOrAbsolute)));
+
+            InputEntitiesTreeView.ItemsSource = InputGroups;
+        }
+
+
+
         private void CreateOutputGroups(int TipoProceso)
         {
             ObservableCollection<OutputGroupViewModel> AllOutputGroups = new ObservableCollection<OutputGroupViewModel>();
@@ -554,7 +663,10 @@ namespace DHOG_WPF
             EnableMenus();
             EntitiesCollections = new EntitiesCollections(dhogDataBaseViewModel);
             EntitiesCollections.BasicPeriodsCollectionImported += UpdateChartTabs;
-            CreateInputGroups();
+            if (Tipocaso == 1)
+                CreateInputGroups();
+            else
+                CreateInputGroupsDespacho();
             CreateOutputGroups(1); // TODO: Delete after testing!
         }
 
@@ -995,6 +1107,8 @@ namespace DHOG_WPF
                 }
             }
         }
+
+       
     }
 }
 

@@ -34,6 +34,10 @@ namespace DHOG_WPF.Models
         }
 
         public string OutputDBFile { get; set; }
+        public string TipoDespacho { get; internal set; }
         //public string DBFolder { get; set; }
+
+
+
     }
 }

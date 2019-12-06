@@ -87,7 +87,8 @@ namespace DHOG_WPF.DataTypes
             PFEquation,
             ExcludingPlants,
             HydroTopology,
-            PeriodicZone
+            PeriodicZone,
+            PeriodicBarra
         }
     }
 }

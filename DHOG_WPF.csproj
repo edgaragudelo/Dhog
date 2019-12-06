@@ -74,9 +74,11 @@
       <HintPath>packages\SpreadsheetLight.3.4.11\lib\net40\SpreadsheetLight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -159,6 +161,7 @@
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\AccessDBWriter.cs" />
+    <Compile Include="DataAccess\PeriodicBarraDataAccess.cs" />
     <Compile Include="DataAccess\RecursoFuelContractsDataAccess.cs" />
     <Compile Include="DataAccess\PeriodicZonesDataAccess.cs" />
     <Compile Include="DataAccess\PFEquationsDataAccess.cs" />
@@ -200,6 +203,7 @@
     <Compile Include="DataAccess\NonConventionalPlantsDataAccess.cs" />
     <Compile Include="DataAccess\EspecialZonesDataAccess.cs" />
     <Compile Include="DataTypes\CandleDataInfo.cs" />
+    <Compile Include="DataTypes\DataProviders\PeriodicBarraDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\RecursoFuelContractsDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\PeriodicZonesDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\PFEquationsDataProvider.cs" />
@@ -257,6 +261,7 @@
     <Compile Include="Dialogs\AboutDHOGDialog.xaml.cs">
       <DependentUpon>AboutDHOGDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\PeriodicBarra.cs" />
     <Compile Include="Models\RecursoBasicEntity.cs" />
     <Compile Include="Models\BasicEntity.cs" />
     <Compile Include="Models\ExcludingPlants.cs" />
@@ -314,6 +319,7 @@
     <Compile Include="ViewModels\ExcludingPlantsViewModel.cs" />
     <Compile Include="ViewModels\CplexParameterViewModel.cs" />
     <Compile Include="ViewModels\ExecutionParametersViewModel.cs" />
+    <Compile Include="ViewModels\PeriodicBarraViewModel.cs" />
     <Compile Include="ViewModels\RecursoFuelContractViewModel.cs" />
     <Compile Include="ViewModels\HydroTopologyViewModel.cs" />
     <Compile Include="ViewModels\PeriodicZoneViewModel.cs" />
@@ -351,6 +357,9 @@
     <Compile Include="ViewModels\NonConventionalPlantViewModel.cs" />
     <Compile Include="ViewModels\EspecialZoneViewModel.cs" />
     <Compile Include="Views\MarginalAverageChart.cs" />
+    <Compile Include="Views\PeriodicBarraDataGrid.xaml.cs">
+      <DependentUpon>PeriodicBarraDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecursoFuelContractsDataGrid.xaml.cs">
       <DependentUpon>RecursoFuelContractsDataGrid.xaml</DependentUpon>
     </Compile>
@@ -551,6 +560,10 @@
     <Page Include="Dialogs\AboutDHOGDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PeriodicBarraDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RecursoFuelContractsDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -779,6 +792,7 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <EmbeddedResource Include="Resources\FilesStructure.config" />
   </ItemGroup>

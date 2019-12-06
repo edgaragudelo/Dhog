@@ -6,22 +6,31 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:local="clr-namespace:DHOG_WPF.Dialogs"
         mc:Ignorable="d"
-        Title="Selección de Caso" 
-        Height="180" Width="480"
+        Title="Selección de Caso / Tipo Despacho" 
+        Height="236.4" Width="513.2"
         Icon="/images/DHOG_Icon2.ico"
         WindowStartupLocation="CenterOwner">
     <DockPanel Width="Auto">
         <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" 
-               Content="Por favor seleccione la base de datos a utilizar. " 
-               Margin="10,10,0,0"/>
-        <StackPanel DockPanel.Dock="Top" Margin="10,10,0,0" Orientation="Horizontal">
-            <TextBox x:Name ="DBFileTextBox" HorizontalAlignment="Center" Width="400" Margin="10,0,0,0"
-                     Text="{Binding InputDBFile, Mode=TwoWay}"/>
+               Content="Por favor seleccione el tipo de caso despacho. " 
+               Margin="0,10,192.2,0"/>
+        <RadioButton Name="Economico" Content="Económico" Height="14.8" VerticalAlignment="Top" Margin="20,5" GroupName="DespachoOptionsGroup"  IsChecked="{Binding DespachoTipo}"/>
+        <RadioButton  Name="Hidrotermico" Content="Hidrotérmico" Height="14.8" VerticalAlignment="Top" Margin="0,5" GroupName="DespachoOptionsGroup"/>
+
+        <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" 
+            Content="Por favor seleccione la base de datos a utilizar. " 
+            Margin="-208,30,0,0"/>
+        <StackPanel DockPanel.Dock="Top" Margin="10,10,0.2,0" Orientation="Horizontal" Height="23">
+
+            <TextBox x:Name ="DBFileTextBox" HorizontalAlignment="Center" Width="400" Margin="-208,0,0,0"
+                Text="{Binding InputDBFile, Mode=TwoWay}"/>
             <Button x:Name ="SelectDBFileButton" Content="..." Width="25" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" Margin="10,0,0,0" Click="SelectDBFileButton_Click"/>
+                VerticalAlignment="Center" Margin="10,0,0,0" Click="SelectDBFileButton_Click"/>
         </StackPanel>
-        <Button DockPanel.Dock="Bottom" x:Name="LoadDBButton" Width="200" Height="30" Margin ="10" 
-                HorizontalAlignment="Center" Content="Cargar Base de Datos" Click="LoadDBButton_Click" 
+
+        <Button DockPanel.Dock="Bottom" x:Name="LoadDBButton" Width="200" Height="30" Margin ="-490,0,0,0" 
+                 Content="Cargar Base de Datos" Click="LoadDBButton_Click" 
                 Focusable="False" />
+
     </DockPanel>
 </Window>

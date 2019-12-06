@@ -17,6 +17,7 @@ namespace DHOG_WPF.ViewModels
         DHOGDataBase dhogDataBase;
         private string initialDate;
         private string Demo;
+    
         int scenario;
         string selectedReservoir;
         string selectedCompany;
@@ -29,6 +30,14 @@ namespace DHOG_WPF.ViewModels
             scenario = 1;
             Demo = "Licencia en DEMO";
         }
+
+       
+
+
+
+       
+
+               
 
         public DHOGDataBase GetDataObject()
         {
@@ -61,6 +70,20 @@ namespace DHOG_WPF.ViewModels
             }
         }
 
+        public string TipoDespacho
+        {
+            get
+            {
+                return dhogDataBase.TipoDespacho;
+            }
+            set
+            {
+                dhogDataBase.TipoDespacho = value;
+               
+                RaisePropertyChanged("TipoDespacho");
+            }
+        }
+
         public string DBFolder { get; set; }
         
         public string Description
@@ -77,6 +100,8 @@ namespace DHOG_WPF.ViewModels
                 RaisePropertyChanged("Description");
             }
         }
+
+
 
         public void UpdateDBVersionAndDescription()
         {

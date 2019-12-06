@@ -9,19 +9,20 @@ using System.ComponentModel;
 
 namespace DHOG_WPF.DataProviders
 {
-    public class PeriodicBlocksDataProvider
+    public class PeriodicBarraDataProvider
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(PeriodicBlocksDataProvider));
+        private static readonly ILog log = LogManager.GetLogger(typeof(PeriodicBarraDataProvider));
 
-        public PeriodicBlocksCollectionViewModel GetObjects()
+        public PeriodicBarraCollectionViewModel GetObjects()
         {
-            PeriodicBlocksCollectionViewModel UIObjects = new PeriodicBlocksCollectionViewModel();
+            PeriodicBarraCollectionViewModel UIObjects = new PeriodicBarraCollectionViewModel();
 
-            List<PeriodicBlock> dataObjects = PeriodicBlocksDataAccess.GetPeriodicBlocks();
-            foreach (PeriodicBlock dataObject in dataObjects)
-                UIObjects.Add(new PeriodicBlockViewModel(dataObject));
-                
-            
+            //   List<PeriodicBarra> dataObjects = PeriodicBarraDataAccess.GetPeriodicBarra();
+            List<PeriodicBarra> dataObjects = PeriodicBarraDataAccess.GetPeriodicBarra();
+            foreach (PeriodicBarra dataObject in dataObjects)
+                UIObjects.Add(new PeriodicBarraViewModel(dataObject));
+                 
+
             UIObjects.ItemEndEdit += new ItemEndEditEventHandler(ObjectsItemEndEdit);
             UIObjects.CollectionChanged += new NotifyCollectionChangedEventHandler(ObjectsCollectionChanged);
 
@@ -36,8 +37,8 @@ namespace DHOG_WPF.DataProviders
                 {
                     foreach (object item in e.OldItems)
                     {
-                        PeriodicBlockViewModel UIObject = item as PeriodicBlockViewModel;
-                        PeriodicBlocksDataAccess.DeletePeriodicBlock(UIObject.GetDataObject());
+                        PeriodicBarraViewModel UIObject = item as PeriodicBarraViewModel;
+                        PeriodicBarraDataAccess.DeletePeriodicBarra(UIObject.GetDataObject());
                     }
                 }
                 catch (Exception ex)
@@ -49,11 +50,11 @@ namespace DHOG_WPF.DataProviders
 
         void ObjectsItemEndEdit(IEditableObject sender)
         {
-            PeriodicBlockViewModel UIObject = sender as PeriodicBlockViewModel;
+            PeriodicBarraViewModel UIObject = sender as PeriodicBarraViewModel;
 
             try
             {
-                PeriodicBlocksDataAccess.UpdatePeriodicBlock(UIObject.GetDataObject());
+                PeriodicBarraDataAccess.UpdatePeriodicBarra(UIObject.GetDataObject());
             }
             catch (Exception ex)
             {

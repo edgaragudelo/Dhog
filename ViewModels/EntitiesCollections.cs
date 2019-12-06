@@ -122,6 +122,10 @@ namespace DHOG_WPF.ViewModels
         public ExcludingPlantsCollectionViewModel ExcludingPlantsCollection { get; private set; }
         public ScenariosActivosCollectionViewModel ScenariosActivosCollection { get; private set; }
 
+        // tablas de despacho economico
+        private PeriodicBarraDataProvider PeriodicBarraDataProvider;
+        public PeriodicBarraCollectionViewModel PeriodicBarraCollection { get; private set; }
+
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
         {
             DHOGCaseViewModel = dhogCaseViewModel;
@@ -174,6 +178,9 @@ namespace DHOG_WPF.ViewModels
             PFEquationsDataProvider = new PFEquationsDataProvider();
             ExcludingPlantsDataProvider = new ExcludingPlantsDataProvider();
             PeriodicZonesDataProvider = new PeriodicZonesDataProvider();
+
+            //Tablas de Despacho
+            PeriodicBarraDataProvider = new PeriodicBarraDataProvider();
         }
 
         private void CreateHydroElementsTypes()
@@ -238,6 +245,9 @@ namespace DHOG_WPF.ViewModels
             CreatePFEquationsCollection();
             CreateExcludingPlantsCollection();
             CreatePeriodicZonesCollection();
+
+            // tablas del despacho economico
+            CreatePeriodicBarraCollection();
         }
 
         private void CreateCompaniesCollection()
@@ -452,6 +462,12 @@ namespace DHOG_WPF.ViewModels
         {
             PeriodicBlocksCollection = PeriodicBlocksDataProvider.GetObjects();
             RaisePropertyChanged("PeriodicBlocksCollection");
+        }
+
+        private void CreatePeriodicBarraCollection()
+        {
+            PeriodicBarraCollection = PeriodicBarraDataProvider.GetObjects();
+            RaisePropertyChanged("PeriodicBarraCollection");
         }
 
         private void CreatePeriodicLoadBlocksCollection()

@@ -1,5 +1,6 @@
 ﻿using DHOG_WPF.DataAccess;
 using DHOG_WPF.ViewModels;
+using System;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows;
@@ -15,11 +16,17 @@ namespace DHOG_WPF.Dialogs
     {
 
         OleDbDataReader reader;
+        int TipoDespacho;
 
         public DHOGDataBaseSelectionDialog()
         {
-            InitializeComponent();
+            InitializeComponent();           
             ValidDBFile = false;
+
+           
+           
+
+
         }
 
         private void LoadDBButton_Click(object sender, RoutedEventArgs e)
@@ -28,6 +35,11 @@ namespace DHOG_WPF.Dialogs
             {
                 DHOGDataBaseViewModel dhogDataBaseViewModel = DataContext as DHOGDataBaseViewModel;
                 dhogDataBaseViewModel.InputDBFile = DBFileTextBox.Text;
+
+                if (Economico.IsChecked == true) TipoDespacho = 0;
+                if (Hidrotermico.IsChecked == true) TipoDespacho =1;
+               
+
                 if (File.Exists(dhogDataBaseViewModel.OutputDBFile)) //TODO: Delete when testing is over!
                 {
                     ValidDBFile = true;
@@ -56,13 +68,15 @@ namespace DHOG_WPF.Dialogs
 
         private void SelectDBFileButton_Click(object sender, RoutedEventArgs e)
         {
-                     
+            if (DBFileTextBox.Text == "")
+            {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "Access Files|*.accdb";
 
+
                 if (openFileDialog.ShowDialog().ToString().Equals("OK"))
                     DBFileTextBox.Text = openFileDialog.FileName;
-      
+            }
             }
     }
 }
