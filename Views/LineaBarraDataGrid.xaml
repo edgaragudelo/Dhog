@@ -1,0 +1,68 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.LineaBarraDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        CanUserInsertRows="False"
+                        NewRowPosition="None"
+                        ItemsSource="{Binding LineaBarraCollection}">
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding BarraInicial}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Barra Inicial" ToolTipService.ToolTip="Barra Inicial"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding BarraFinal}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Barra Final" ToolTipService.ToolTip="Barra Final"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Reactancia}"
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Reactancia" ToolTipService.ToolTip="Reactancia"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding FlujoMaximo}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Flujo Maximo" ToolTipService.ToolTip="Flujo Maximo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding NMenos1}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="NMenos1" ToolTipService.ToolTip="NMenos1"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Activa}" 
+                                    Style="{StaticResource ColumnHeaderStyle}">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Activa" ToolTipService.ToolTip="Activa"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

@@ -466,8 +466,8 @@ namespace DHOG_WPF
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
-                new InputEntityViewModel("LineaBasica", new CompaniesDataGrid(EntitiesCollections), EntityType.Company),
-                new InputEntityViewModel("LineaPeriodo", new PeriodicCompaniesDataGrid(EntitiesCollections), EntityType.PeriodicCompany)
+                new InputEntityViewModel("LineaBarra", new LineaBarraDataGrid(EntitiesCollections), EntityType.LineaBarra),
+                new InputEntityViewModel("LineaPeriodo", new LineaPeriodoDataGrid(EntitiesCollections), EntityType.LineaPeriodo)
 
             };
           InputGroups.Add(new InputGroupViewModel("Lineas", entitiesInformation, new Uri(@"../Images/Companies.png", UriKind.RelativeOrAbsolute)));

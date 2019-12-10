@@ -1,0 +1,42 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.LineaPeriodoDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        CanUserInsertRows="False"
+                        NewRowPosition="None"
+                        ItemsSource="{Binding LineaPeriodoCollection}">
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Periodo}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Periodo" ToolTipService.ToolTip="Periodo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding flujomaximo}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Flujo maximo" ToolTipService.ToolTip="flujomaximo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+        
+      
+
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

@@ -126,6 +126,15 @@ namespace DHOG_WPF.ViewModels
         private PeriodicBarraDataProvider PeriodicBarraDataProvider;
         public PeriodicBarraCollectionViewModel PeriodicBarraCollection { get; private set; }
 
+        private AreaBarraDataProvider AreaBarraDataProvider;
+        public AreaBarraCollectionViewModel AreaBarraCollection { get; private set; }
+
+        private LineaPeriodoDataProvider LineaPeriodoDataProvider;
+        public LineaPeriodoCollectionViewModel LineaPeriodoCollection { get; private set; }
+
+        private LineaBarraDataProvider LineaBarraDataProvider;
+        public LineaBarraCollectionViewModel LineaBarraCollection { get; private set; }
+
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
         {
             DHOGCaseViewModel = dhogCaseViewModel;
@@ -181,6 +190,10 @@ namespace DHOG_WPF.ViewModels
 
             //Tablas de Despacho
             PeriodicBarraDataProvider = new PeriodicBarraDataProvider();
+            AreaBarraDataProvider = new AreaBarraDataProvider();
+            LineaPeriodoDataProvider = new LineaPeriodoDataProvider();
+            LineaBarraDataProvider = new LineaBarraDataProvider();
+
         }
 
         private void CreateHydroElementsTypes()
@@ -248,6 +261,10 @@ namespace DHOG_WPF.ViewModels
 
             // tablas del despacho economico
             CreatePeriodicBarraCollection();
+            CreateAreaBarraCollection();
+            CreateLineaPeriodoCollection();
+            CreateLineaBarraCollection();
+
         }
 
         private void CreateCompaniesCollection()
@@ -469,6 +486,25 @@ namespace DHOG_WPF.ViewModels
             PeriodicBarraCollection = PeriodicBarraDataProvider.GetObjects();
             RaisePropertyChanged("PeriodicBarraCollection");
         }
+
+        private void CreateAreaBarraCollection()
+        {
+            AreaBarraCollection = AreaBarraDataProvider.GetObjects();
+            RaisePropertyChanged("AreaBarraCollection");
+        }
+
+        private void CreateLineaPeriodoCollection()
+        {
+            LineaPeriodoCollection = LineaPeriodoDataProvider.GetObjects();
+            RaisePropertyChanged("LineaPeriodoCollection");
+        }
+
+        private void CreateLineaBarraCollection()
+        {
+            LineaBarraCollection = LineaBarraDataProvider.GetObjects();        
+            RaisePropertyChanged("LineaBarraCollection");
+        }
+
 
         private void CreatePeriodicLoadBlocksCollection()
         {
