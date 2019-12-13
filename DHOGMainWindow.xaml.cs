@@ -474,8 +474,8 @@ namespace DHOG_WPF
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
-                new InputEntityViewModel("CortePeriodo", new FuelsDataGrid(EntitiesCollections), EntityType.Fuel),
-                new InputEntityViewModel("CorteLinea", new PeriodicFuelsDataGrid(EntitiesCollections), EntityType.PeriodicFuel)
+                new InputEntityViewModel("CortePeriodo", new CortePeriodoDataGrid(EntitiesCollections), EntityType.CortePeriodo),
+                new InputEntityViewModel("CorteLinea", new CorteLineaDataGrid(EntitiesCollections), EntityType.CorteLinea)
             };
             InputGroups.Add(new InputGroupViewModel("Cortes", entitiesInformation, new Uri(@"../Images/Fuels2.png", UriKind.RelativeOrAbsolute)));
 
@@ -491,7 +491,7 @@ namespace DHOG_WPF
             {
                 new InputEntityViewModel("UnidadBasica", new PFEquationsDataGrid(EntitiesCollections), EntityType.PFEquation),
                 new InputEntityViewModel("RecursoUnidad", new HydroPlantsDataGrid(EntitiesCollections), EntityType.HydroPlant),
-                new InputEntityViewModel("UnidadPeriodo", new PeriodicHydroPlantsDataGrid(EntitiesCollections), EntityType.PeriodicHydroPlant),
+                new InputEntityViewModel("UnidadPeriodo", new UnidadPeriodoDataGrid(EntitiesCollections), EntityType.UnidadPeriodo),
                 //new InputEntityViewModel("RecursoHidroVariable", new VariableHydroPlantsDataGrid(EntitiesCollections), EntityType.VariableHydroPlant),
             };
             InputGroups.Add(new InputGroupViewModel("Unidades", entitiesInformation, new Uri(@"../Images/HydroPlants.png", UriKind.RelativeOrAbsolute)));
@@ -511,9 +511,9 @@ namespace DHOG_WPF
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
-                new InputEntityViewModel("RecursosBasica", new ExcludingPlantsDataGrid(EntitiesCollections), EntityType.ExcludingPlants),
-                new InputEntityViewModel("RecursoPrecio", new ThermalPlantsDataGrid(EntitiesCollections), EntityType.ThermalPlant),
-                new InputEntityViewModel("RecursoPeriodo", new PeriodicThermalPlantsDataGrid(EntitiesCollections), EntityType.PeriodicThermalPlant),
+                new InputEntityViewModel("RecursosBasica", new RecursoBasicaDataGrid(EntitiesCollections), EntityType.RecursoBasica),
+                new InputEntityViewModel("RecursoPrecio", new RecursoPrecioDataGrid(EntitiesCollections), EntityType.RecursoPrecio),
+                new InputEntityViewModel("RecursoPeriodo", new RecursoPeriodoDataGrid(EntitiesCollections), EntityType.RecursoPeriodo),
                 new InputEntityViewModel("RecursoFactiblele", new VariableThermalPlantsDataGrid(EntitiesCollections), EntityType.VariableThermalPlant),
             };
             InputGroups.Add(new InputGroupViewModel("Recursos", entitiesInformation, new Uri(@"../Images/ThermalPlants.png", UriKind.RelativeOrAbsolute)));

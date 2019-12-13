@@ -91,7 +91,13 @@ namespace DHOG_WPF.DataTypes
             PeriodicBarra,
             AreaBarra,
             LineaPeriodo,
-            LineaBarra
+            LineaBarra,
+            CorteLinea,
+            CortePeriodo,
+            UnidadPeriodo,
+            RecursoPeriodo,
+            RecursoPrecio,
+            RecursoBasica
         }
     }
 }

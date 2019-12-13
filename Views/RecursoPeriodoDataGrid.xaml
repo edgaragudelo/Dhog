@@ -1,0 +1,82 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.RecursoPeriodoDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        CanUserInsertRows="False"
+                        NewRowPosition="None"
+                        ItemsSource="{Binding RecursoPeriodoCollection}">
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Periodo}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Periodo" ToolTipService.ToolTip="Periodo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Minimo}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Minimo" ToolTipService.ToolTip="Minimo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Maximo}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Maximo" ToolTipService.ToolTip="Maximo"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Precio" ToolTipService.ToolTip="Precio"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Obligatorio}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Obligatorio" ToolTipService.ToolTip="Obligatorio"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Pruebas}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Pruebas" ToolTipService.ToolTip="Pruebas"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding AGC}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="AGC" ToolTipService.ToolTip="AGC"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+
+
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

@@ -132,8 +132,28 @@ namespace DHOG_WPF.ViewModels
         private LineaPeriodoDataProvider LineaPeriodoDataProvider;
         public LineaPeriodoCollectionViewModel LineaPeriodoCollection { get; private set; }
 
+        private CorteLineaDataProvider CorteLineaDataProvider;
+        public CorteLineaCollectionViewModel CorteLineaCollection { get; private set; }
+
         private LineaBarraDataProvider LineaBarraDataProvider;
         public LineaBarraCollectionViewModel LineaBarraCollection { get; private set; }
+
+        private CortePeriodoDataProvider CortePeriodoDataProvider;
+        public CortePeriodoCollectionViewModel CortePeriodoCollection { get; private set; }
+
+        private UnidadPeriodoDataProvider UnidadPeriodoDataProvider;
+        public UnidadPeriodoCollectionViewModel UnidadPeriodoCollection { get; private set; }
+
+        private RecursoPeriodoDataProvider RecursoPeriodoDataProvider;
+        public RecursoPeriodoCollectionViewModel RecursoPeriodoCollection { get; private set; }
+
+        private RecursoPrecioDataProvider RecursoPrecioDataProvider;
+        public RecursoPrecioCollectionViewModel RecursoPrecioCollection { get; private set; }
+
+        private RecursoBasicaDataProvider RecursoBasicaDataProvider;
+        public RecursoBasicaCollectionViewModel RecursoBasicaCollection { get; private set; }
+
+
 
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
         {
@@ -193,7 +213,12 @@ namespace DHOG_WPF.ViewModels
             AreaBarraDataProvider = new AreaBarraDataProvider();
             LineaPeriodoDataProvider = new LineaPeriodoDataProvider();
             LineaBarraDataProvider = new LineaBarraDataProvider();
-
+            CorteLineaDataProvider = new CorteLineaDataProvider();
+            CortePeriodoDataProvider = new CortePeriodoDataProvider();
+            UnidadPeriodoDataProvider = new UnidadPeriodoDataProvider();
+            RecursoPeriodoDataProvider = new RecursoPeriodoDataProvider();
+            RecursoPrecioDataProvider = new RecursoPrecioDataProvider();
+            RecursoBasicaDataProvider = new RecursoBasicaDataProvider();
         }
 
         private void CreateHydroElementsTypes()
@@ -264,6 +289,12 @@ namespace DHOG_WPF.ViewModels
             CreateAreaBarraCollection();
             CreateLineaPeriodoCollection();
             CreateLineaBarraCollection();
+            CreateCorteLineaCollection();
+            CreateCortePeriodoCollection();
+            CreateUnidadPeriodoCollection();
+            CreateRecursoPeriodoCollection();
+            CreateRecursoPrecioCollection();
+            CreateRecursoBasicaCollection();
 
         }
 
@@ -497,6 +528,43 @@ namespace DHOG_WPF.ViewModels
         {
             LineaPeriodoCollection = LineaPeriodoDataProvider.GetObjects();
             RaisePropertyChanged("LineaPeriodoCollection");
+        }
+
+        private void CreateCortePeriodoCollection()
+        {
+            CortePeriodoCollection = CortePeriodoDataProvider.GetObjects();
+            RaisePropertyChanged("CortePeriodoCollection");
+        }
+
+        private void CreateUnidadPeriodoCollection()
+        {
+            UnidadPeriodoCollection = UnidadPeriodoDataProvider.GetObjects();
+            RaisePropertyChanged("UnidadPeriodoCollection");
+        }
+
+        private void CreateRecursoPeriodoCollection()
+        {
+            RecursoPeriodoCollection = RecursoPeriodoDataProvider.GetObjects();
+            RaisePropertyChanged("RecursoPeriodoCollection");
+        }
+
+        private void CreateRecursoPrecioCollection()
+        {
+            RecursoPrecioCollection = RecursoPrecioDataProvider.GetObjects();
+            RaisePropertyChanged("RecursoPrecioCollection");
+        }
+
+        private void CreateRecursoBasicaCollection()
+        {
+            RecursoBasicaCollection = RecursoBasicaDataProvider.GetObjects();
+            RaisePropertyChanged("RecursoBasicaCollection");
+        }
+
+
+        private void CreateCorteLineaCollection()
+        {
+            CorteLineaCollection = CorteLineaDataProvider.GetObjects();
+            RaisePropertyChanged("CorteLineaCollection");
         }
 
         private void CreateLineaBarraCollection()
