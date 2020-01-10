@@ -97,7 +97,12 @@ namespace DHOG_WPF.DataTypes
             UnidadPeriodo,
             RecursoPeriodo,
             RecursoPrecio,
-            RecursoBasica
+            RecursoBasica,
+            RecursoFactible,
+            RecursoUnidad,
+            UnidadBarra,
+            RecursoRampa,
+            ZonaUnidad
         }
     }
 }

@@ -1,0 +1,33 @@
+﻿<local:BaseDataGridView x:Class="DHOG_WPF.Views.UnidadBarraDataGrid"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                        xmlns:local="clr-namespace:DHOG_WPF.Views"
+                        mc:Ignorable="d"
+                        CanUserInsertRows="False"
+                        NewRowPosition="None"
+                        ItemsSource="{Binding UnidadBarraCollection}">
+    <telerik:RadGridView.Columns>
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre, ValidatesOnExceptions=True}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn>
+
+        <telerik:GridViewDataColumn DataMemberBinding="{Binding Barra}"
+                                    Style="{StaticResource ColumnHeaderStyle}"
+                                    IsReadOnly="True">
+            <telerik:GridViewDataColumn.Header>
+                <TextBlock Text="Barra" ToolTipService.ToolTip="Barra"/>
+            </telerik:GridViewDataColumn.Header>
+        </telerik:GridViewDataColumn> 
+
+
+    </telerik:RadGridView.Columns>
+</local:BaseDataGridView>
+
+

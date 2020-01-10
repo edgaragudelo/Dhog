@@ -74,7 +74,7 @@ namespace DHOG_WPF
 
             StyleManager.ApplicationTheme = new Office2016Theme();
             Office2016Palette.Palette.FontSize = 14;
-            string FechaActivaciondemo = "2019-12-01";
+            string FechaActivaciondemo = "2020-01-01";
             DateTime Fechasys = DateTime.Parse(FechaActivaciondemo);
             Fechasys = Fechasys.AddDays(30);
             int DiasFaltantes;
@@ -489,8 +489,8 @@ namespace DHOG_WPF
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
-                new InputEntityViewModel("UnidadBasica", new PFEquationsDataGrid(EntitiesCollections), EntityType.PFEquation),
-                new InputEntityViewModel("RecursoUnidad", new HydroPlantsDataGrid(EntitiesCollections), EntityType.HydroPlant),
+                new InputEntityViewModel("UnidadBarra", new UnidadBarraDataGrid(EntitiesCollections), EntityType.UnidadBarra),
+                new InputEntityViewModel("RecursoUnidad", new RecursoUnidadDataGrid(EntitiesCollections), EntityType.RecursoUnidad),
                 new InputEntityViewModel("UnidadPeriodo", new UnidadPeriodoDataGrid(EntitiesCollections), EntityType.UnidadPeriodo),
                 //new InputEntityViewModel("RecursoHidroVariable", new VariableHydroPlantsDataGrid(EntitiesCollections), EntityType.VariableHydroPlant),
             };
@@ -514,7 +514,8 @@ namespace DHOG_WPF
                 new InputEntityViewModel("RecursosBasica", new RecursoBasicaDataGrid(EntitiesCollections), EntityType.RecursoBasica),
                 new InputEntityViewModel("RecursoPrecio", new RecursoPrecioDataGrid(EntitiesCollections), EntityType.RecursoPrecio),
                 new InputEntityViewModel("RecursoPeriodo", new RecursoPeriodoDataGrid(EntitiesCollections), EntityType.RecursoPeriodo),
-                new InputEntityViewModel("RecursoFactiblele", new VariableThermalPlantsDataGrid(EntitiesCollections), EntityType.VariableThermalPlant),
+                new InputEntityViewModel("RecursoFactible", new RecursoFactibleDataGrid(EntitiesCollections), EntityType.RecursoFactible),
+                 new InputEntityViewModel("RecursoRampa", new RecursoRampaDataGrid(EntitiesCollections), EntityType.RecursoRampa),
             };
             InputGroups.Add(new InputGroupViewModel("Recursos", entitiesInformation, new Uri(@"../Images/ThermalPlants.png", UriKind.RelativeOrAbsolute)));
 
@@ -528,7 +529,7 @@ namespace DHOG_WPF
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
-                new InputEntityViewModel("ZonaUnidad", new ZonesDataGrid(EntitiesCollections), EntityType.Zone),
+                new InputEntityViewModel("ZonaUnidad", new ZonaUnidadDataGrid(EntitiesCollections), EntityType.ZonaUnidad),
                 //new InputEntityViewModel("ZonaEspecial", new EspecialZonesDataGrid(EntitiesCollections), EntityType.Zone),
                 new InputEntityViewModel("ZonaPeriodo", new PeriodicZonesDataGrid(EntitiesCollections), EntityType.PeriodicZone),
               //  new InputEntityViewModel("ZonaRecurso", new ZonesPlantsPanel(EntitiesCollections), EntityType.Zone),

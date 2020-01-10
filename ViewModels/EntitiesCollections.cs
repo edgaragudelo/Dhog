@@ -39,7 +39,7 @@ namespace DHOG_WPF.ViewModels
 
         public EspecialZonesCollectionViewModel EspecialZonesCollection { get; private set; }
 
-      
+
 
         public List<string> ZoneTypes { get; private set; }
         private PeriodicZonesDataProvider PeriodicZonesDataProvider;
@@ -153,7 +153,20 @@ namespace DHOG_WPF.ViewModels
         private RecursoBasicaDataProvider RecursoBasicaDataProvider;
         public RecursoBasicaCollectionViewModel RecursoBasicaCollection { get; private set; }
 
+        private RecursoFactibleDataProvider RecursoFactibleDataProvider;
+        public RecursoFactibleCollectionViewModel RecursoFactibleCollection { get; private set; }
 
+        private RecursoUnidadDataProvider RecursoUnidadDataProvider;
+        public RecursoUnidadCollectionViewModel RecursoUnidadCollection { get; private set; }
+
+        private UnidadBarraDataProvider UnidadBarraDataProvider;
+        public UnidadBarraCollectionViewModel UnidadBarraCollection { get; private set; }
+
+        private RecursoRampaDataProvider RecursoRampaDataProvider;
+        public RecursoRampaCollectionViewModel RecursoRampaCollection { get; private set; }
+
+        private ZonaUnidadDataProvider ZonaUnidadDataProvider;
+        public ZonaUnidadCollectionViewModel ZonaUnidadCollection { get; private set; }
 
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
         {
@@ -219,6 +232,11 @@ namespace DHOG_WPF.ViewModels
             RecursoPeriodoDataProvider = new RecursoPeriodoDataProvider();
             RecursoPrecioDataProvider = new RecursoPrecioDataProvider();
             RecursoBasicaDataProvider = new RecursoBasicaDataProvider();
+            RecursoFactibleDataProvider = new RecursoFactibleDataProvider();
+            RecursoUnidadDataProvider = new RecursoUnidadDataProvider();
+            UnidadBarraDataProvider = new UnidadBarraDataProvider();
+            RecursoRampaDataProvider = new RecursoRampaDataProvider();
+            ZonaUnidadDataProvider = new ZonaUnidadDataProvider();
         }
 
         private void CreateHydroElementsTypes()
@@ -295,6 +313,11 @@ namespace DHOG_WPF.ViewModels
             CreateRecursoPeriodoCollection();
             CreateRecursoPrecioCollection();
             CreateRecursoBasicaCollection();
+            CreateRecursoFactibleCollection();
+            CreateRecursoUnidadCollection();
+            CreateUnidadBarraCollection();
+            CreateRecursoRampaCollection();
+            CreateZonaUnidadCollection();
 
         }
 
@@ -548,10 +571,40 @@ namespace DHOG_WPF.ViewModels
             RaisePropertyChanged("RecursoPeriodoCollection");
         }
 
+        private void CreateRecursoFactibleCollection()
+        {
+            RecursoFactibleCollection = RecursoFactibleDataProvider.GetObjects();
+            RaisePropertyChanged("RecursoFactibleCollection");
+        }
+
         private void CreateRecursoPrecioCollection()
         {
             RecursoPrecioCollection = RecursoPrecioDataProvider.GetObjects();
             RaisePropertyChanged("RecursoPrecioCollection");
+        }
+
+        private void CreateRecursoUnidadCollection()
+        {
+            RecursoUnidadCollection = RecursoUnidadDataProvider.GetObjects();
+            RaisePropertyChanged("RecursoUnidadCollection");
+        }
+
+        private void CreateZonaUnidadCollection()
+        {
+            ZonaUnidadCollection = ZonaUnidadDataProvider.GetObjects();
+            RaisePropertyChanged("ZonaUnidadCollection");
+        }
+
+        private void CreateRecursoRampaCollection()
+        {
+            RecursoRampaCollection = RecursoRampaDataProvider.GetObjects();
+            RaisePropertyChanged("RecursoRampaCollection");
+        }
+
+        private void CreateUnidadBarraCollection()
+        {
+            UnidadBarraCollection = UnidadBarraDataProvider.GetObjects();
+            RaisePropertyChanged("UnidadBarraCollection");
         }
 
         private void CreateRecursoBasicaCollection()

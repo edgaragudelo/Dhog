@@ -162,8 +162,13 @@
     </Compile>
     <Compile Include="DataAccess\AccessDBWriter.cs" />
     <Compile Include="DataAccess\RecursoBasicaDataAccess.cs" />
+    <Compile Include="DataAccess\RecursoFactibleDataAccess.cs" />
+    <Compile Include="DataAccess\RecursoRampaDataAccess.cs" />
     <Compile Include="DataAccess\RecursoPeriodoDataAccess.cs" />
+    <Compile Include="DataAccess\UnidadBarraDataAccess.cs" />
+    <Compile Include="DataAccess\RecursoUnidadDataAccess.cs" />
     <Compile Include="DataAccess\RecursoPrecioDataAccess.cs" />
+    <Compile Include="DataAccess\ZonaUnidadDataAccess.cs" />
     <Compile Include="DataAccess\UnidadPeriodoDataAccess.cs" />
     <Compile Include="DataAccess\LineaBarraDataAccess.cs" />
     <Compile Include="DataAccess\CorteLineaDataAccess.cs" />
@@ -213,8 +218,13 @@
     <Compile Include="DataAccess\EspecialZonesDataAccess.cs" />
     <Compile Include="DataTypes\CandleDataInfo.cs" />
     <Compile Include="DataTypes\DataProviders\RecursoBasicaDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\RecursoFactibleDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\RecursoRampaDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\UnidadBarraDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\RecursoUnidadDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\RecursoPrecioDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\RecursoPeriodoDataProvider.cs" />
+    <Compile Include="DataTypes\DataProviders\ZonaUnidadDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\UnidadPeriodoDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\LineaBarraDataProvider.cs" />
     <Compile Include="DataTypes\DataProviders\CorteLineaDataProvider.cs" />
@@ -280,8 +290,13 @@
       <DependentUpon>AboutDHOGDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\RecursoBasica.cs" />
+    <Compile Include="Models\RecursoFactible.cs" />
+    <Compile Include="Models\RecursoRampa.cs" />
     <Compile Include="Models\RecursoPeriodo.cs" />
+    <Compile Include="Models\UnidadBarra.cs" />
+    <Compile Include="Models\RecursoUnidad.cs" />
     <Compile Include="Models\RecursoPrecio.cs" />
+    <Compile Include="Models\ZonaUnidad.cs" />
     <Compile Include="Models\UnidadPeriodo.cs" />
     <Compile Include="Models\LineaBarra.cs" />
     <Compile Include="Models\CorteLinea.cs" />
@@ -344,8 +359,13 @@
     <Compile Include="Util\DateFormater.cs" />
     <Compile Include="Util\MessageUtil.cs" />
     <Compile Include="ViewModels\RecursoBasicaViewModel.cs" />
+    <Compile Include="ViewModels\RecursoFactibleViewModel.cs" />
+    <Compile Include="ViewModels\RecursoRampaViewModel.cs" />
+    <Compile Include="ViewModels\UnidadBarraViewModel.cs" />
+    <Compile Include="ViewModels\RecursoUnidadViewModel.cs" />
     <Compile Include="ViewModels\RecursoPrecioViewModel.cs" />
     <Compile Include="ViewModels\RecursoPeriodoViewModel.cs" />
+    <Compile Include="ViewModels\ZonaUnidadViewModel.cs" />
     <Compile Include="ViewModels\UnidadPeriodoViewModel.cs" />
     <Compile Include="ViewModels\LineaBarraViewModel.cs" />
     <Compile Include="ViewModels\CorteLineaViewModel.cs" />
@@ -395,11 +415,26 @@
     <Compile Include="Views\RecursoBasicaDataGrid.xaml.cs">
       <DependentUpon>RecursoBasicaDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecursoFactibleDataGrid.xaml.cs">
+      <DependentUpon>RecursoFactibleDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecursoRampaDataGrid.xaml.cs">
+      <DependentUpon>RecursoRampaDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UnidadBarraDataGrid.xaml.cs">
+      <DependentUpon>UnidadBarraDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecursoUnidadDataGrid.xaml.cs">
+      <DependentUpon>RecursoUnidadDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecursoPrecioDataGrid.xaml.cs">
       <DependentUpon>RecursoPrecioDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecursoPeriodoDataGrid.xaml.cs">
       <DependentUpon>RecursoPeriodoDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ZonaUnidadDataGrid.xaml.cs">
+      <DependentUpon>ZonaUnidadDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UnidadPeriodoDataGrid.xaml.cs">
       <DependentUpon>UnidadPeriodoDataGrid.xaml</DependentUpon>
@@ -628,11 +663,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\RecursoFactibleDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecursoRampaDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UnidadBarraDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecursoUnidadDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\RecursoPrecioDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RecursoPeriodoDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ZonaUnidadDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
