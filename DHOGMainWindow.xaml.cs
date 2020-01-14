@@ -340,8 +340,16 @@ namespace DHOG_WPF
                 new InputEntityViewModel("DemandaBloque", new PeriodicLoadBlocksDataGrid(EntitiesCollections), EntityType.PeriodicLoadBlock),
                 new InputEntityViewModel("EscenariosBasica", new ScenariosDataGrid(EntitiesCollections), EntityType.Scenario),
                 new InputEntityViewModel("PeriodoBasica", new PeriodsDataGrid(EntitiesCollections), EntityType.Period),
+               
             };
             InputGroups.Add(new InputGroupViewModel("Periodo y Demanda", entitiesInformation, new Uri(@"../Images/Period.png", UriKind.RelativeOrAbsolute)));
+
+            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            //{
+            //    new InputEntityViewModel("BarraPeriodo", new PeriodicBarraDataGrid(EntitiesCollections), EntityType.PeriodicBarra)
+            //};
+            //InputGroups.Add(new InputGroupViewModel("Barras", entitiesInformation, new Uri(@"../Images/Blocks.png", UriKind.RelativeOrAbsolute)));
+
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
@@ -356,6 +364,28 @@ namespace DHOG_WPF
                 new InputEntityViewModel("AreaPeriodo", new PeriodicAreasDataGrid(EntitiesCollections), EntityType.PeriodicArea)
             };
             InputGroups.Add(new InputGroupViewModel("Áreas", entitiesInformation, new Uri(@"../Images/Areas.png", UriKind.RelativeOrAbsolute)));
+
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
+                new InputEntityViewModel("LineaBarra", new LineaBarraDataGrid(EntitiesCollections), EntityType.LineaBarra),
+                new InputEntityViewModel("LineaPeriodo", new LineaPeriodoDataGrid(EntitiesCollections), EntityType.LineaPeriodo),
+                new InputEntityViewModel("CortePeriodo", new CortePeriodoDataGrid(EntitiesCollections), EntityType.CortePeriodo),
+                new InputEntityViewModel("CorteLinea", new CorteLineaDataGrid(EntitiesCollections), EntityType.CorteLinea),
+                new InputEntityViewModel("BarraPeriodo", new PeriodicBarraDataGrid(EntitiesCollections), EntityType.PeriodicBarra)
+
+            };
+           
+            InputGroups.Add(new InputGroupViewModel("Flujo Red", entitiesInformation, new Uri(@"../Images/Fuels2.png", UriKind.RelativeOrAbsolute)));
+
+            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            //{
+            //    new InputEntityViewModel("UnidadBarra", new UnidadBarraDataGrid(EntitiesCollections), EntityType.UnidadBarra),
+            //    new InputEntityViewModel("RecursoUnidad", new RecursoUnidadDataGrid(EntitiesCollections), EntityType.RecursoUnidad),
+            //    new InputEntityViewModel("UnidadPeriodo", new UnidadPeriodoDataGrid(EntitiesCollections), EntityType.UnidadPeriodo),
+               
+            //};
+            //InputGroups.Add(new InputGroupViewModel("Unidades", entitiesInformation, new Uri(@"../Images/HydroPlants.png", UriKind.RelativeOrAbsolute)));
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
@@ -403,6 +433,18 @@ namespace DHOG_WPF
 
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
+                new InputEntityViewModel("RecursoPrecio", new RecursoPrecioDataGrid(EntitiesCollections), EntityType.RecursoPrecio),
+                new InputEntityViewModel("RecursoPeriodo", new RecursoPeriodoDataGrid(EntitiesCollections), EntityType.RecursoPeriodo),
+                new InputEntityViewModel("RecursoFactible", new RecursoFactibleDataGrid(EntitiesCollections), EntityType.RecursoFactible),
+                new InputEntityViewModel("RecursoRampa", new RecursoRampaDataGrid(EntitiesCollections), EntityType.RecursoRampa),
+                new InputEntityViewModel("RecursoUnidad", new RecursoUnidadDataGrid(EntitiesCollections), EntityType.RecursoUnidad),
+                new InputEntityViewModel("UnidadBarra", new UnidadBarraDataGrid(EntitiesCollections), EntityType.UnidadBarra),               
+                new InputEntityViewModel("UnidadPeriodo", new UnidadPeriodoDataGrid(EntitiesCollections), EntityType.UnidadPeriodo),
+             };
+            InputGroups.Add(new InputGroupViewModel("Despacho Económico", entitiesInformation, new Uri(@"../Images/ThermalPlants.png", UriKind.RelativeOrAbsolute)));
+
+            entitiesInformation = new ObservableCollection<InputEntityViewModel>
+            {
                 new InputEntityViewModel("RecursosExcluyentes", new ExcludingPlantsDataGrid(EntitiesCollections), EntityType.ExcludingPlants),
                 new InputEntityViewModel("RecursoTermicoBasica", new ThermalPlantsDataGrid(EntitiesCollections), EntityType.ThermalPlant),
                 new InputEntityViewModel("RecursoTermicoPeriodo", new PeriodicThermalPlantsDataGrid(EntitiesCollections), EntityType.PeriodicThermalPlant),
@@ -421,6 +463,7 @@ namespace DHOG_WPF
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
                 new InputEntityViewModel("ZonaBasica", new ZonesDataGrid(EntitiesCollections), EntityType.Zone),
+                new InputEntityViewModel("ZonaUnidad", new ZonaUnidadDataGrid(EntitiesCollections), EntityType.ZonaUnidad),
                 new InputEntityViewModel("ZonaEspecial", new EspecialZonesDataGrid(EntitiesCollections), EntityType.Zone),
                 new InputEntityViewModel("ZonaPeriodo", new PeriodicZonesDataGrid(EntitiesCollections), EntityType.PeriodicZone),
               //  new InputEntityViewModel("ZonaRecurso", new ZonesPlantsPanel(EntitiesCollections), EntityType.Zone),
@@ -582,6 +625,11 @@ namespace DHOG_WPF
                 new OutputEntityViewModel("Generación por tecnología [GWh/hora]", "Generación_Tecnología_Hora", new SimpleDataGridView("zz_ReporteGeneracion_hora", false,TipoProceso), InfoType.Grid),
                 new OutputEntityViewModel("Intercambio entre áreas  [GWh/bloque]", "Intercambio_Áreas", new SimpleDataGridView("INTERCAMBIO_AREA_BLOQUE", true,TipoProceso), InfoType.Grid),
                 new OutputEntityViewModel("Racionamiento del Sistema", "Racionamiento_Sistema", new SimpleDataGridView("zz_racionamientoP_B", true,TipoProceso), InfoType.Grid),
+                new OutputEntityViewModel("Racionamiento Area Despacho Económico", "Racionamiento_Area_Despacho", new SimpleDataGridView("zz_racionamientoA_DE", true,TipoProceso), InfoType.Grid),
+                new OutputEntityViewModel("Racionamiento Barra Despacho Económico", "Racionamiento_Barra_Despacho", new SimpleDataGridView("zz_racionamientoB_DE", true,TipoProceso), InfoType.Grid),
+                new OutputEntityViewModel("Racionamiento Sistema Despacho Económico", "Racionamiento_Sistema_Despacho", new SimpleDataGridView("zz_racionamientoP_DE", true,TipoProceso), InfoType.Grid),
+                new OutputEntityViewModel("Intercambio Despacho Económico", "Intercambio_Despacho", new SimpleDataGridView("zz_IntercambioAreas_DE", true,TipoProceso), InfoType.Grid),
+                
         };
             outputGroup = new OutputGroupViewModel("Generación", entities, new Uri(@"../Images/Generation.png", UriKind.RelativeOrAbsolute));
             GridOutputGroups.Add(outputGroup);
@@ -596,6 +644,7 @@ namespace DHOG_WPF
                 new OutputEntityViewModel("Costo marginal demanda [USD/MWh]", "Costo_Marginal_Demanda", new SimpleDataGridView("zz_costoMarginal", true,TipoProceso), InfoType.Grid),
                 new OutputEntityViewModel("Costo marginal demanda por áreas [USD/MWh]", "Costo_Marginal_Areas", new SimpleDataGridView("zz_costoMarginalAreas", true,TipoProceso), InfoType.Grid),
                 new OutputEntityViewModel("Costo marginal promedio [USD/MWh]", "Costo_Marginal_Promedio", new SimpleDataGridView("zz_marginalPromedio", true,TipoProceso), InfoType.Grid),
+                new OutputEntityViewModel("Costo marginal Despacho Económico [USD/MWh]", "Costo_Marginal_Despacho", new SimpleDataGridView("zz_despachoRecurso_DE", true,TipoProceso), InfoType.Grid),
         };
             outputGroup = new OutputGroupViewModel("Costos Marginales", entities, new Uri(@"../Images/MarginalCosts.png", UriKind.RelativeOrAbsolute));
             GridOutputGroups.Add(outputGroup);
@@ -664,10 +713,11 @@ namespace DHOG_WPF
             EnableMenus();
             EntitiesCollections = new EntitiesCollections(dhogDataBaseViewModel);
             EntitiesCollections.BasicPeriodsCollectionImported += UpdateChartTabs;
-            if (Tipocaso == 1)
-                CreateInputGroups();
-            else
-                CreateInputGroupsDespacho();
+            CreateInputGroups();
+            //if (Tipocaso == 1)
+            //    CreateInputGroups();
+            //else
+            //    CreateInputGroupsDespacho();
             CreateOutputGroups(1); // TODO: Delete after testing!
         }
 
@@ -938,6 +988,24 @@ namespace DHOG_WPF
                         case "Probabilidad de Escenarios":
                             entity = new OutputEntityViewModel("Probabilidad de Escenarios", "Probabilidad_Escenarios", new SimpleDataGridView("ESCENARIO_OUT", true,1), InfoType.Grid);
                             break;
+                        case "Costo marginal Despacho Económico [USD/MWh]":
+                            entity = new OutputEntityViewModel("Costo marginal Despacho Económico [USD/MWh]", "Costo_Marginal_Despacho", new SimpleDataGridView("zz_despachoRecurso_DE", true, 1), InfoType.Grid);
+                            break;
+                        case "Intercambio Despacho Económico":
+                            entity = new OutputEntityViewModel("Intercambio Despacho Económico", "Intercambio_Despacho", new SimpleDataGridView("zz_IntercambioAreas_DE", true, 1), InfoType.Grid);
+                            break;
+                        case "Racionamiento Area Despacho Económico":
+                           entity = new OutputEntityViewModel("Racionamiento Area Despacho Económico", "Racionamiento_Area_Despacho", new SimpleDataGridView("zz_racionamientoA_DE", true, 1), InfoType.Grid);
+                            break;
+                        case "Racionamiento Barra Despacho Económico":
+                            entity = new OutputEntityViewModel("Racionamiento Barra Despacho Económico", "Racionamiento_Barra_Despacho", new SimpleDataGridView("zz_racionamientoB_DE", true, 1), InfoType.Grid);
+                            break;
+                        case "Racionamiento Sistema Despacho Económico":
+                            entity = new OutputEntityViewModel("Racionamiento Sistema Despacho Económico", "Racionamiento_Sistema_Despacho", new SimpleDataGridView("zz_racionamientoP_DE", true, 1), InfoType.Grid);
+                            break;
+                            
+
+
                     }
 
                     tab = new CloseableTab()

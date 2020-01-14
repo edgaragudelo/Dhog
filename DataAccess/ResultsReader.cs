@@ -301,8 +301,9 @@ namespace DHOG_WPF.DataAccess
         {
             DataTable dataTable = new DataTable();
             string query = null;
-            if (table != "ESCENARIO_OUT")
-            {
+            if ((table != "ESCENARIO_OUT") && (table != "zz_despachoRecurso_DE") && (table != "zz_IntercambioAreas_DE") && (table != "zz_racionamientoA_DE") && (table != "zz_racionamientoB_DE") 
+                    && (table != "zz_racionamientoP_DE"))
+            {                  
                 query = string.Format("SELECT b.fecha,a.* FROM {0} ", table);
                 query = query + " a,periodobasica b where a.periodo=b.nombre";
             }

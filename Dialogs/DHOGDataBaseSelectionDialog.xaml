@@ -6,16 +6,16 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:local="clr-namespace:DHOG_WPF.Dialogs"
         mc:Ignorable="d"
-        Title="Selección de Caso / Tipo Despacho" 
+        Title="Selección de Caso" 
         Height="236.4" Width="513.2"
         Icon="/images/DHOG_Icon2.ico"
         WindowStartupLocation="CenterOwner">
     <DockPanel Width="Auto">
         <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" 
-               Content="Por favor seleccione el tipo de caso despacho. " 
+               Content="Por favor seleccione el tipo de caso despacho. " Visibility="Hidden"
                Margin="0,10,192.2,0"/>
-        <RadioButton Name="Economico" Content="Económico" Height="14.8" VerticalAlignment="Top" Margin="20,5" GroupName="DespachoOptionsGroup"  IsChecked="{Binding DespachoTipo}"/>
-        <RadioButton  Name="Hidrotermico" Content="Hidrotérmico" Height="14.8" VerticalAlignment="Top" Margin="0,5" GroupName="DespachoOptionsGroup"/>
+        <RadioButton Name="Economico" Content="Económico" Visibility="Hidden" Height="14.8" VerticalAlignment="Top" Margin="20,5" GroupName="DespachoOptionsGroup"  IsChecked="{Binding DespachoTipo}"/>
+        <RadioButton  Name="Hidrotermico" Content="Hidrotérmico" Visibility="Hidden" Height="14.8" VerticalAlignment="Top" Margin="0,5" GroupName="DespachoOptionsGroup"/>
 
         <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" 
             Content="Por favor seleccione la base de datos a utilizar. " 
