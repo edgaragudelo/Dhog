@@ -25,6 +25,7 @@ namespace DHOG_WPF.Views
             this.entitiesCollections = entitiesCollections;
             entitiesCollections.DHOGCaseViewModel.SelectedReservoirChanged += DHOGCaseViewModel_SelectedReservoirChanged;
             entitiesCollections.DHOGCaseViewModel.SelectedCompanyChanged += DHOGCaseViewModel_SelectedCompanyChanged;
+            entitiesCollections.DHOGCaseViewModel.CaseScenarioChanged += DHOGCaseViewModel_SelectedScenarioChanged;
 
             this.chartTitle = chartTitle;
             this.optionsType = optionsType;
@@ -60,9 +61,15 @@ namespace DHOG_WPF.Views
             UpdateChart();
         }
 
+        private void DHOGCaseViewModel_SelectedScenarioChanged()
+        {
+            UpdateChart();
+        }
+
         public Grid CreateChartOptionsPanel()
         {
 
+                     
             Grid chartOptionsPanel = new Grid();
 
             if (!optionsType.Equals(ChartOptionsType.CandleStick))
@@ -145,7 +152,7 @@ namespace DHOG_WPF.Views
 
 
                 //MessageBox.Show("valor", scenarioComboBox.ToString());
-                scenarioComboBox.SelectedIndex = 0;
+                //scenarioComboBox.SelectedIndex = 0;
                 chartOptionsPanel.Children.Add(scenarioComboBox);
              
 
@@ -201,6 +208,16 @@ namespace DHOG_WPF.Views
                     SetRow(optionComboBox, 0);
                     SetColumn(optionComboBox, 3);
                     chartOptionsPanel.Children.Add(optionComboBox);
+
+                    //if (String.IsNullOrEmpty(scenarioComboBox.SelectedValue.ToString()))
+                    //{
+                    //  MessageBox.Show("Valor escenario","Valor vacio");
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Valor escenario", scenarioComboBox.SelectedValue.ToString());
+                    //}
+
                 }
 
             }

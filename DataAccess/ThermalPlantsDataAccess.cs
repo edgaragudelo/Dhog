@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.Windows;
 
 namespace DHOG_WPF.DataAccess
 {
@@ -12,16 +13,34 @@ namespace DHOG_WPF.DataAccess
         public static List<ThermalPlant> GetObjects()
         {
             List<ThermalPlant> plants = new List<ThermalPlant>();
-
+            string vble=null;
+            string vble1 = null;
             string query = string.Format("SELECT nombre, Combustible, FactorDisponibilidad, FactorConsumoPromedio, Minimo, Maximo, CostoVariable, FactorConsumoVariable, Obligatorio, empresa, EtapaEntrada, Escenario, Id, Subarea " +
                                          "FROM {0}", table);
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             while (reader.Read())
             {
+                try
+                {
+                    vble = null;
+                    vble1 = null;
+                    if (!reader.IsDBNull(13))
+                        vble = reader.GetString(13);
+                    else vble = string.Empty;
+                    if (!reader.IsDBNull(1))
+                        vble1 = reader.GetString(1);
+                    else vble1 = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ex.");
+                    throw;
+                }
+              
                 plants.Add(new ThermalPlant()
                 {
                     Name = reader.GetString(0),
-                    Fuel = reader.GetString(1),
+                    Fuel = vble1, //reader.GetString(1),
                     AvailabilityFactor = Convert.ToDouble(reader.GetValue(2)),
                     ProductionFactor = Convert.ToDouble(reader.GetValue(3)),
                     Min = Convert.ToDouble(reader.GetValue(4)),
@@ -33,7 +52,7 @@ namespace DHOG_WPF.DataAccess
                     StartPeriod = Convert.ToInt32(reader.GetValue(10)),
                     Case = Convert.ToInt32(reader.GetValue(11)),
                     Id = Convert.ToInt32(reader.GetValue(12)),
-                    Subarea = reader.GetString(13)
+                    Subarea = vble
                 });
             }
             DataBaseManager.DbConnection.Close();

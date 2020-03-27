@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DHOG_WPF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Despacho Hidrotérmico Generalizado")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Rightside S.A.S")]
 [assembly: AssemblyProduct("DHOG_WPF")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

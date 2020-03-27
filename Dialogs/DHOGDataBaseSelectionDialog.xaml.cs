@@ -1,11 +1,15 @@
 ﻿using DHOG_WPF.DataAccess;
+using DHOG_WPF.Util;
 using DHOG_WPF.ViewModels;
 using System;
+using System.Configuration;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using Telerik.Windows.Controls;
+
+
 
 namespace DHOG_WPF.Dialogs
 {
@@ -15,8 +19,8 @@ namespace DHOG_WPF.Dialogs
     public partial class DHOGDataBaseSelectionDialog : Window
     {
 
-        OleDbDataReader reader;
-        int TipoDespacho;
+        //OleDbDataReader reader;
+       int TipoDespacho;
 
         public DHOGDataBaseSelectionDialog()
         {
@@ -68,16 +72,46 @@ namespace DHOG_WPF.Dialogs
 
         private void SelectDBFileButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DBFileTextBox.Text == "")
+            string Nombrefile,Directorio = null;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Access Files|*.accdb";
+
+
+            if (DBFileTextBox.Text != "")
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Access Files|*.accdb";
-
-
+              System.Windows.MessageBoxResult vble =   System.Windows.MessageBox.Show("Desea cambiar la base de datos?", "Carga de Base de Datos", MessageBoxButton.YesNo);
+                if (vble == MessageBoxResult.Yes)
+                {                   
+                    if (openFileDialog.ShowDialog().ToString().Equals("OK"))
+                    {
+                        DBFileTextBox.Text = openFileDialog.FileName;
+                        Nombrefile = openFileDialog.SafeFileName;
+                        Directorio = DBFileTextBox.Text.Replace(Nombrefile,"");
+                    }
+                }
+            }
+            else
+            {
+                //OpenFileDialog openFileDialog = new OpenFileDialog();
+                //openFileDialog.Filter = "Access Files|*.accdb";
                 if (openFileDialog.ShowDialog().ToString().Equals("OK"))
+                {
                     DBFileTextBox.Text = openFileDialog.FileName;
+                    Nombrefile = openFileDialog.SafeFileName;
+                    Directorio = DBFileTextBox.Text.Replace(Nombrefile, "");
+                }
             }
-            }
+
+            string Rutain, Rutaout;
+            Rutain = ConfigurationManager.AppSettings.Get("RutaEntrada");
+            Rutaout = ConfigurationManager.AppSettings.Get("RutaSalida");
+            Rutain = DBFileTextBox.Text;
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["RutaEntrada"].Value = DBFileTextBox.Text;
+            config.AppSettings.Settings["RutaSalida"].Value = Directorio + "DHOG_OUT.accdb"; //  DBFileTextBox.Text;
+            config.Save(ConfigurationSaveMode.Modified);
+
+        }
     }
 }
 

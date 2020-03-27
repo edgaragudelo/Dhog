@@ -32,10 +32,7 @@ namespace DHOG_WPF.ViewModels
         }
 
        
-
-
-
-       
+                        
 
                
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.Windows;
 
 namespace DHOG_WPF.DataAccess
 {
@@ -19,6 +20,7 @@ namespace DHOG_WPF.DataAccess
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             while (reader.Read())
             {
+               
                 plants.Add(new HydroPlant()
                 {
                     Name = reader.GetString(0),
@@ -32,10 +34,11 @@ namespace DHOG_WPF.DataAccess
                     IsMandatory = Convert.ToInt32(reader.GetValue(8)),
                     Company = reader.GetString(9),
                     StartPeriod = Convert.ToInt32(reader.GetValue(10)),
-                    Case = Convert.ToInt32(reader.GetValue(11)), 
+                    Case = Convert.ToInt32(reader.GetValue(11)),
                     Id = Convert.ToInt32(reader.GetValue(12)),
-                    Subarea = reader.GetString(13)
+                    Subarea = reader.GetString(13)             
                 });
+                
             }
             DataBaseManager.DbConnection.Close();
             

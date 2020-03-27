@@ -7,21 +7,20 @@
         xmlns:local="clr-namespace:DHOG_WPF.Dialogs"
         mc:Ignorable="d"
         Title="Selección de Caso" 
-        Height="236.4" Width="513.2"
+        Height="185" Width="513.2"
         Icon="/images/DHOG_Icon2.ico"
         WindowStartupLocation="CenterOwner">
-    <DockPanel Width="Auto">
+    <DockPanel Width="Auto" Margin="0,-60,0,-1" Height="215" VerticalAlignment="Top">
         <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" 
                Content="Por favor seleccione el tipo de caso despacho. " Visibility="Hidden"
                Margin="0,10,192.2,0"/>
         <RadioButton Name="Economico" Content="Económico" Visibility="Hidden" Height="14.8" VerticalAlignment="Top" Margin="20,5" GroupName="DespachoOptionsGroup"  IsChecked="{Binding DespachoTipo}"/>
         <RadioButton  Name="Hidrotermico" Content="Hidrotérmico" Visibility="Hidden" Height="14.8" VerticalAlignment="Top" Margin="0,5" GroupName="DespachoOptionsGroup"/>
 
-        <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" 
-            Content="Por favor seleccione la base de datos a utilizar. " 
+        <Label DockPanel.Dock="Top" FontSize="15" VerticalAlignment="Center" Content="Por favor seleccione la base de datos a utilizar. " 
             Margin="-208,30,0,0"/>
-        <StackPanel DockPanel.Dock="Top" Margin="10,10,0.2,0" Orientation="Horizontal" Height="23">
 
+        <StackPanel DockPanel.Dock="Top" Margin="10,10,0.2,0" Orientation="Horizontal" Height="23">
             <TextBox x:Name ="DBFileTextBox" HorizontalAlignment="Center" Width="400" Margin="-208,0,0,0"
                 Text="{Binding InputDBFile, Mode=TwoWay}"/>
             <Button x:Name ="SelectDBFileButton" Content="..." Width="25" HorizontalAlignment="Right" 
