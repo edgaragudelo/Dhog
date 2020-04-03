@@ -22,6 +22,7 @@ namespace DHOG_WPF.Views
 
         public ChartPanelView(string chartTitle, ChartOptionsType optionsType, BaseChart chart, EntitiesCollections entitiesCollections)
         {
+
             this.entitiesCollections = entitiesCollections;
             entitiesCollections.DHOGCaseViewModel.SelectedReservoirChanged += DHOGCaseViewModel_SelectedReservoirChanged;
             entitiesCollections.DHOGCaseViewModel.SelectedCompanyChanged += DHOGCaseViewModel_SelectedCompanyChanged;

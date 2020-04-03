@@ -112,7 +112,7 @@ namespace DHOG_WPF.Dialogs
             InitializeComponent();
             CreateConstraintsGrid();
             CreateConfigurationParametersGrid();
-            //CreateCplexParametersGrid();
+            CreateCplexParametersGrid();
             //CreateConstraintsGridRutas();
            // CreateRutasDhogParametersGrid();
             this.dbFolder = dbFolder;

@@ -100,8 +100,8 @@
                 <TextBlock TextWrapping="Wrap" Text="Modelo Iterativo" />
             </RadioButton>
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Ejecución OPL" 
-                   FontSize="14" FontWeight="Bold" HorizontalAlignment="Left"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Ejecución Modelo Matemático" 
+                   FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="10,10,0,10" Width="210"/>
             <TextBox Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="4" Height="200"
                      x:Name="ExecutionStatusTextBox"
                      TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True"

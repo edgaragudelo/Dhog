@@ -6,9 +6,11 @@
                         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                         xmlns:local="clr-namespace:DHOG_WPF.Views"
                         mc:Ignorable="d"
-                        CanUserInsertRows="False"
-                        NewRowPosition="None"
-                        ItemsSource="{Binding UnidadBarraCollection}">
+                        
+                        ItemsSource="{Binding UnidadBarraCollection}">    
+                       
+
+
     <telerik:RadGridView.Columns>
         <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre, ValidatesOnExceptions=True}"
                                     Style="{StaticResource ColumnHeaderStyle}"
@@ -18,13 +20,24 @@
             </telerik:GridViewDataColumn.Header>
         </telerik:GridViewDataColumn>
 
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding Barra}"
+        <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding Barra}"
                                     Style="{StaticResource ColumnHeaderStyle}"
                                     IsReadOnly="True">
             <telerik:GridViewDataColumn.Header>
                 <TextBlock Text="Barra" ToolTipService.ToolTip="Barra"/>
-            </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn> 
+            </telerik:GridViewDataColumn.Header>-->
+
+            <telerik:GridViewComboBoxColumn x:Name="Barra"
+                                        DataMemberBinding="{Binding Barra}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Barras}">
+                <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Barra" ToolTipService.ToolTip="Barra"/>
+                </telerik:GridViewComboBoxColumn.Header>
+            </telerik:GridViewComboBoxColumn>
+
+        <!--</telerik:GridViewDataColumn>--> 
 
 
     </telerik:RadGridView.Columns>

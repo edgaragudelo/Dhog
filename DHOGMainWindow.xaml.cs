@@ -36,7 +36,7 @@ namespace DHOG_WPF
     public partial class DHOGMainWindow : Window
     {
         DHOGDataBaseViewModel dhogDataBaseViewModel;
-        public static double DHOGVersion = 3.2;
+        public static double DHOGVersion = 3.3;
         private string lastTabSelected;
         private bool caseLoaded;
         int Tipocaso = 0;
@@ -74,7 +74,7 @@ namespace DHOG_WPF
 
             StyleManager.ApplicationTheme = new Office2016Theme();
             Office2016Palette.Palette.FontSize = 14;
-            string FechaActivaciondemo = "2020-03-01";
+            string FechaActivaciondemo = "2020-04-01";
             DateTime Fechasys = DateTime.Parse(FechaActivaciondemo);
             Fechasys = Fechasys.AddDays(30);
             int DiasFaltantes;
@@ -428,7 +428,7 @@ namespace DHOG_WPF
                 new InputEntityViewModel("EmbalsePeriodo", new PeriodicReservoirsDataGrid(EntitiesCollections), EntityType.PeriodicReservoir),
                 new InputEntityViewModel("SistemaHidroBasica", new HydroSystemsDataGrid(EntitiesCollections), EntityType.HydroSystem),
                 new InputEntityViewModel("SistemaHidroPeriodo", new PeriodicHydroSystemsDataGrid(EntitiesCollections), EntityType.PeriodicHydroSystem),
-               // new InputEntityViewModel("TopologiaHidraulica", new HydroTopologyPanel(EntitiesCollections), EntityType.HydroTopology)
+                new InputEntityViewModel("TopologiaHidraulica", new HydroTopologyPanel(EntitiesCollections), EntityType.HydroTopology)
             };
             InputGroups.Add(new InputGroupViewModel("Elementos Hidráulicos", entitiesInformation, new Uri(@"../Images/HydroElements2.png", UriKind.RelativeOrAbsolute)));
 

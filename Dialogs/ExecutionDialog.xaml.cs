@@ -92,7 +92,7 @@ namespace DHOG_WPF.Dialogs
                 //sw.WriteLine(rutaOpl1 + "\\oplrun.exe " + rutaModelo + "\\DHOG.mod " + rutaModelo + "\\DHOG.dat " + rutaModelo + "\\DHOG_UP.dat");
 
                 sw.WriteLine("cd /D " + ruta);
-                sw.WriteLine(" python dhog.py");
+                sw.WriteLine(" python dhog.py "+basedatos);
                 sw.WriteLine("pause");
 
 

@@ -13,7 +13,7 @@ namespace DHOG_WPF.DataAccess
         {
             List<Area> areas = new List<Area>();
 
-            string query = string.Format("SELECT Nombre, DemandaBase, limiteImportacion, limiteExportacion, Id " +
+            string query = string.Format("SELECT Nombre, factorDemanda, limiteImportacion, limiteExportacion, Id " +
                                          "FROM {0} ORDER BY Nombre", table);
 
             OleDbDataReader reader = DataBaseManager.ReadData(query);
@@ -43,7 +43,7 @@ namespace DHOG_WPF.DataAccess
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             if (!reader.Read())
             {
-                query = string.Format("INSERT INTO {0}(nombre, DemandaBase, limiteImportacion, limiteExportacion) " +
+                query = string.Format("INSERT INTO {0}(nombre, factorDemanda, limiteImportacion, limiteExportacion) " +
                                         "VALUES(@Name, @BaseLoad, @ImportationLimit, @ExportationLimit)", table);
                 isNew = true;
             }
@@ -51,7 +51,7 @@ namespace DHOG_WPF.DataAccess
             {
                 query = string.Format("UPDATE {0} SET " +
                                         "nombre = @Name, " +
-                                        "DemandaBase = @BaseLoad, " +
+                                        "factorDemanda = @BaseLoad, " +
                                         "limiteImportacion = @ImportationLimit, " +
                                         "limiteExportacion = @ExportationLimit " +
                                         "WHERE Id = @Id", table);

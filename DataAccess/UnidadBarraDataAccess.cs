@@ -29,19 +29,19 @@ namespace DHOG_WPF.DataAccess
         public static void UpdateUnidadBarra(UnidadBarra UnidadBarra)
         {
             string query = string.Format("UPDATE {0} SET " +
-                                         "Barra = @Barra, " +
+                                         "Barra = @Barra, Nombre = @Name " +
                                          "WHERE nombre = @Name " , table);
 
             using (OleDbCommand command = new OleDbCommand(query, DataBaseManager.DbConnection))
             {
-                command.Parameters.Add("@Barra", OleDbType.Numeric);              
+                command.Parameters.Add("@Barra", OleDbType.VarChar);              
                 command.Parameters.Add("@Name", OleDbType.VarChar);
                 
 
                 DataBaseManager.DbConnection.Open();
 
                 command.Parameters["@Barra"].Value = UnidadBarra.Barra;                
-                command.Parameters["@Name"].Value = UnidadBarra.Name;
+                command.Parameters["@Name"].Value = UnidadBarra.Nombre;
                
 
                 int rowsAffected = command.ExecuteNonQuery();
@@ -55,7 +55,7 @@ namespace DHOG_WPF.DataAccess
             string query = string.Format("DELETE FROM {0} " +
                                          "WHERE nombre = {1} " +
                                          "AND Barra = {2}",
-                                         table, UnidadBarra.Name, UnidadBarra.Barra);
+                                         table, UnidadBarra.Nombre, UnidadBarra.Barra);
             DataBaseManager.ExecuteQuery(query);
         }
     }

@@ -162,11 +162,15 @@ namespace DHOG_WPF.ViewModels
         private UnidadBarraDataProvider UnidadBarraDataProvider;
         public UnidadBarraCollectionViewModel UnidadBarraCollection { get; private set; }
 
+        public PeriodicBarraCollectionViewModel BarraCollection { get; private set; }
+
         private RecursoRampaDataProvider RecursoRampaDataProvider;
         public RecursoRampaCollectionViewModel RecursoRampaCollection { get; private set; }
 
         private ZonaUnidadDataProvider ZonaUnidadDataProvider;
         public ZonaUnidadCollectionViewModel ZonaUnidadCollection { get; private set; }
+
+        public ObservableCollection<string> Barras { get; private set; }
 
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
         {
@@ -318,6 +322,7 @@ namespace DHOG_WPF.ViewModels
             CreateUnidadBarraCollection();
             CreateRecursoRampaCollection();
             CreateZonaUnidadCollection();
+            CreateBarras();
 
         }
 
@@ -723,6 +728,19 @@ namespace DHOG_WPF.ViewModels
             
             RaisePropertyChanged("CompaniesScenario1");
         }
+
+
+        private void CreateBarras()
+        {
+            Barras = new ObservableCollection<string>();
+
+            foreach (PeriodicBarraViewModel UIObject in PeriodicBarraCollection)
+                if (UIObject.Nombre != null)
+                    Barras.Add(UIObject.Nombre);
+
+            RaisePropertyChanged("Barras");
+        }
+
 
         private void CreateNonConventionalPlantsScenario1()
         {

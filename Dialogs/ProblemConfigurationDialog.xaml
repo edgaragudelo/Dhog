@@ -72,7 +72,7 @@
                     </Grid.RowDefinitions>
                 </Grid>
             </telerik:RadTabItem>
-            <telerik:RadTabItem Header="Parámetros de Cplex" Visibility="Hidden"> 
+            <telerik:RadTabItem Header="Parámetros del Optimizador" Visibility="Visible"> 
                 <Grid x:Name="CplexParametersGrid" Margin="10"  >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>

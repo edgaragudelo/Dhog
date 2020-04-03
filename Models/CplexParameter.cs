@@ -8,7 +8,7 @@ namespace DHOG_WPF.Models
 {
     public class CplexParameter
     {
-        public CplexParameter(string name, double value, string description)
+        public CplexParameter(string name, string value, string description)
         {
             Name = name;
             Value = value;
@@ -16,7 +16,7 @@ namespace DHOG_WPF.Models
         }
 
         public string Name { get; set; }
-        public double Value { get; set; }
+        public string Value { get; set; }
         public string Description { get; set; }
     }
 }

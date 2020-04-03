@@ -18,8 +18,9 @@ namespace DHOG_WPF.DataAccess
                                          "ORDER BY nombre", table);
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             while (reader.Read())
-                cplexParameters.Add(new CplexParameter(reader.GetString(0), Convert.ToDouble(reader.GetValue(1)), reader.GetString(2)));
-            
+                //cplexParameters.Add(new CplexParameter(reader.GetString(0), Convert.ToDouble(reader.GetValue(1)), reader.GetString(2)));
+            cplexParameters.Add(new CplexParameter(reader.GetString(0), reader.GetString(1), reader.GetString(2)));
+
             DataBaseManager.DbConnection.Close();
             return cplexParameters;
         }

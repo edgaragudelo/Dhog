@@ -84,8 +84,8 @@
                     <Label Grid.Row="0" Foreground="White" Background="Black" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Center"
                               Content="{Binding InputDBFile, Mode=TwoWay}" 
                               Margin="2,1,315,0" Grid.RowSpan="2" FontSize="12" Grid.Column="1" Grid.ColumnSpan="4" Height="25"/>
-                    <TextBlock Grid.Row="1" FontWeight="Bold" Foreground="White" Background="Black" VerticalAlignment="Top" HorizontalAlignment="Center"
-                             Text="{Binding Description, Mode=TwoWay}"  Margin="142,5,69,0" FontSize="12" Grid.Column="4" Height="26"/>
+                    <TextBox Grid.Row="1" FontWeight="Bold" Foreground="White" Background="Black" VerticalAlignment="Top" 
+                             Text="{Binding Description, Mode=TwoWay}"  Margin="113.081,5,79.919,0" FontSize="12" Grid.Column="4" Height="26" IsEnabled="True" IsReadOnly="False"  />
                     <Label Grid.Row="1" 
                             VerticalAlignment="Top" 
                            Content="{Binding InitialDate}" Margin="10,0,29,0" FontSize="12" FontWeight="Bold" Background="Black"

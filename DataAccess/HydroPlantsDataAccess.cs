@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Windows;
+using Telerik.Windows.Controls;
 
 namespace DHOG_WPF.DataAccess
 {
@@ -12,6 +13,9 @@ namespace DHOG_WPF.DataAccess
 
         public static List<HydroPlant> GetObjects()
         {
+
+            string vble = null;
+            string vble1 = null;
             List<HydroPlant> plants = new List<HydroPlant>();
 
             string query = string.Format("SELECT nombre, FactorDisponibilidad, FactorConversionPromedio, Minimo, Maximo, CostoVariable, PorcentajeAGC, FactorConversionVariable, Obligatorio, empresa, EtapaEntrada, Escenario, Id, Subarea " +
@@ -20,10 +24,23 @@ namespace DHOG_WPF.DataAccess
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             while (reader.Read())
             {
+
                
-                plants.Add(new HydroPlant()
+                try
                 {
-                    Name = reader.GetString(0),
+                    vble = null;
+                    vble1 = null;
+                    if (!reader.IsDBNull(13))
+                        vble = reader.GetString(13);
+                    else vble = string.Empty;
+                    if (!reader.IsDBNull(1))
+                        vble1 = reader.GetString(0);
+                    else vble1 = string.Empty;
+
+
+                    plants.Add(new HydroPlant()
+                {
+                    Name = vble1 , //reader.GetString(0),
                     AvailabilityFactor = Convert.ToDouble(reader.GetValue(1)),
                     ProductionFactor = Convert.ToDouble(reader.GetValue(2)),
                     Min = Convert.ToDouble(reader.GetValue(3)),
@@ -36,8 +53,23 @@ namespace DHOG_WPF.DataAccess
                     StartPeriod = Convert.ToInt32(reader.GetValue(10)),
                     Case = Convert.ToInt32(reader.GetValue(11)),
                     Id = Convert.ToInt32(reader.GetValue(12)),
-                    Subarea = reader.GetString(13)             
+                    Subarea = vble //reader.GetString(13)             
                 });
+                }
+                catch (Exception Ex)
+                {
+                    RadWindow.Alert(new DialogParameters
+                    {
+                        Content = Ex.Message,
+                        //Content = MessageUtil.FormatMessage("FATAL.DBConnectionError"),
+                        //Owner = this
+                    });
+                    //DBConversionBusyIndicator.IsBusy = false;
+
+                   
+                }
+
+               
                 
             }
             DataBaseManager.DbConnection.Close();

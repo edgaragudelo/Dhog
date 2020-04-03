@@ -37,7 +37,7 @@ namespace DHOG_WPF.ViewModels
             }
         }
 
-        public double Value
+        public string Value
         {
             get
             {
