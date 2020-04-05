@@ -9,14 +9,19 @@
                         CanUserInsertRows="False"
                         NewRowPosition="None"
                         ItemsSource="{Binding CorteLineaCollection}">
-    <telerik:RadGridView.Columns>
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre, ValidatesOnExceptions=True}"
-                                    Style="{StaticResource ColumnHeaderStyle}"
-                                    IsReadOnly="True">
-            <telerik:GridViewDataColumn.Header>
+    <telerik:RadGridView.Columns>     
+
+
+        <telerik:GridViewComboBoxColumn x:Name="Nombre"
+                                        DataMemberBinding="{Binding Nombre}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Cortes}">
+            <telerik:GridViewComboBoxColumn.Header>
                 <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
-            </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
 
         <telerik:GridViewDataColumn DataMemberBinding="{Binding Linea}"
                                     Style="{StaticResource ColumnHeaderStyle}"

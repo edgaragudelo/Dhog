@@ -18,21 +18,29 @@
             </telerik:GridViewDataColumn.Header>
         </telerik:GridViewDataColumn>
 
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding BarraInicial}"
-                                    Style="{StaticResource ColumnHeaderStyle}"
-                                    IsReadOnly="True">
-            <telerik:GridViewDataColumn.Header>
-                <TextBlock Text="Barra Inicial" ToolTipService.ToolTip="Barra Inicial"/>
-            </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn>
+     
 
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding BarraFinal}"
-                                    Style="{StaticResource ColumnHeaderStyle}"
-                                    IsReadOnly="True">
-            <telerik:GridViewDataColumn.Header>
+        <telerik:GridViewComboBoxColumn x:Name="Barra"
+                                        DataMemberBinding="{Binding BarraInicial}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Barras}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Barra Inicial" ToolTipService.ToolTip="Barra Inicial"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        <telerik:GridViewComboBoxColumn x:Name="BarraF"
+                                        DataMemberBinding="{Binding BarraFinal}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Barras}">
+            <telerik:GridViewComboBoxColumn.Header>
                 <TextBlock Text="Barra Final" ToolTipService.ToolTip="Barra Final"/>
-            </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+        
 
         <telerik:GridViewDataColumn DataMemberBinding="{Binding Reactancia}"
                                     Style="{StaticResource ColumnHeaderStyle}">

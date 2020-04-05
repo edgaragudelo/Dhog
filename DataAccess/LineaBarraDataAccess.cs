@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.Windows;
+using Telerik.Windows.Controls;
 
 namespace DHOG_WPF.DataAccess
 {
@@ -34,7 +36,7 @@ namespace DHOG_WPF.DataAccess
             bool isNew = false;
             string query = string.Format("SELECT nombre " +
                                          "FROM {0} " +
-                                         "WHERE nombre = {1}", table, dataObject.Nombre);
+                                         "WHERE nombre = '{1}'", table, dataObject.Nombre);
 
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             if (!reader.Read())
@@ -47,12 +49,12 @@ namespace DHOG_WPF.DataAccess
             {
                 query = string.Format("UPDATE {0} SET " +
                                         "nombre = @Name, " +
-                                        "BarraInicial = @BarraInicial" +
-                                        "BarraFinal = @BarraFinal" +
+                                        "BarraInicial = @BarraInicial, " +
+                                        "BarraFinal = @BarraFinal, " +
                                         "Reactancia = @Reactancia, " +
                                         "NMenos1 = @NMenos1, " +
                                         "FlujoMaximo = @FlujoMaximo " +
-                                        "WHERE Activa = @Activa", table);
+                                        "WHERE nombre = @Name and Activa = @Activa", table);
             }
             DataBaseManager.DbConnection.Close();
 
@@ -70,6 +72,7 @@ namespace DHOG_WPF.DataAccess
 
                 command.Parameters["@Name"].Value = dataObject.Nombre;
                 command.Parameters["@BarraInicial"].Value = dataObject.BarraInicial;
+                command.Parameters["@BarraFinal"].Value = dataObject.BarraFinal;
                 command.Parameters["@Reactancia"].Value = dataObject.Reactancia;
                 command.Parameters["@NMenos1"].Value = dataObject.NMenos1;
                 command.Parameters["@FlujoMaximo"].Value = dataObject.FlujoMaximo;
@@ -79,8 +82,14 @@ namespace DHOG_WPF.DataAccess
                 {
                     int rowsAffected = command.ExecuteNonQuery();
                 }
-                catch
+                catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message,"Error actualizando Linea Barra");
+                    RadWindow.Alert(new DialogParameters
+                    {
+                        Content = ex.Message,
+                        //Owner = this
+                    });
                     DataBaseManager.DbConnection.Close();
                     throw;
                 }

@@ -172,6 +172,8 @@ namespace DHOG_WPF.ViewModels
 
         public ObservableCollection<string> Barras { get; private set; }
 
+        public ObservableCollection<string> Cortes { get; private set; }
+
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
         {
             DHOGCaseViewModel = dhogCaseViewModel;
@@ -323,6 +325,7 @@ namespace DHOG_WPF.ViewModels
             CreateRecursoRampaCollection();
             CreateZonaUnidadCollection();
             CreateBarras();
+            CreateCortes();
 
         }
 
@@ -740,6 +743,23 @@ namespace DHOG_WPF.ViewModels
 
             RaisePropertyChanged("Barras");
         }
+
+
+        private void CreateCortes()
+        {
+            Cortes = new ObservableCollection<string>();
+
+            foreach (CortePeriodoViewModel UIObject in CortePeriodoCollection)
+                if (UIObject.Nombre != null)
+                {
+                    if (!Cortes.Contains(UIObject.Nombre))
+                    Cortes.Add(UIObject.Nombre);
+                }
+                    
+
+            RaisePropertyChanged("Cortes");
+        }
+
 
 
         private void CreateNonConventionalPlantsScenario1()
