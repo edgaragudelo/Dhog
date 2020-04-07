@@ -10,13 +10,17 @@
                         NewRowPosition="None"
                         ItemsSource="{Binding RecursoPrecioCollection}">
     <telerik:RadGridView.Columns>
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding Nombre, ValidatesOnExceptions=True}"
-                                    Style="{StaticResource ColumnHeaderStyle}"
-                                    IsReadOnly="True">
-            <telerik:GridViewDataColumn.Header>
+
+        <telerik:GridViewComboBoxColumn x:Name="Nombre"
+                                        DataMemberBinding="{Binding Nombre}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding PlantsCollectionScenario1}">
+            <telerik:GridViewComboBoxColumn.Header>
                 <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
-            </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+       
 
         <telerik:GridViewDataColumn DataMemberBinding="{Binding Precio}"
                                     Style="{StaticResource ColumnHeaderStyle}"

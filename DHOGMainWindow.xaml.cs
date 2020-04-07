@@ -844,10 +844,10 @@ namespace DHOG_WPF
         private void OutputEntitiesTreeView_Selected(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
 
-     
 
+           
             if (NumeroTrees == 0)
-            {
+            {   CreateOutputGroups(1);
                 NumeroTrees++;
                 List<EntityType> ColeccionUpdate = new List<EntityType>()
                 {

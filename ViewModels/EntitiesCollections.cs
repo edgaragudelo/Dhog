@@ -174,6 +174,8 @@ namespace DHOG_WPF.ViewModels
 
         public ObservableCollection<string> Cortes { get; private set; }
 
+        public ObservableCollection<string> Lineas { get; private set; }
+
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
         {
             DHOGCaseViewModel = dhogCaseViewModel;
@@ -326,6 +328,7 @@ namespace DHOG_WPF.ViewModels
             CreateZonaUnidadCollection();
             CreateBarras();
             CreateCortes();
+            CreateLineas();
 
         }
 
@@ -742,6 +745,17 @@ namespace DHOG_WPF.ViewModels
                     Barras.Add(UIObject.Nombre);
 
             RaisePropertyChanged("Barras");
+        }
+
+        private void CreateLineas()
+        {
+            Lineas = new ObservableCollection<string>();
+
+            foreach (LineaPeriodoViewModel UIObject in LineaPeriodoCollection)
+                if (UIObject.Nombre != null)
+                    Lineas.Add(UIObject.Nombre);
+
+            RaisePropertyChanged("Lineas");
         }
 
 

@@ -20,16 +20,19 @@
             <telerik:GridViewComboBoxColumn.Header>
                 <TextBlock Text="Nombre" ToolTipService.ToolTip="Nombre"/>
             </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>     
+
+
+        <telerik:GridViewComboBoxColumn x:Name="Linea"
+                                        DataMemberBinding="{Binding Linea}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Lineas}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="Linea" ToolTipService.ToolTip="Linea"/>
+            </telerik:GridViewComboBoxColumn.Header>
         </telerik:GridViewComboBoxColumn>
 
-
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding Linea}"
-                                    Style="{StaticResource ColumnHeaderStyle}"
-                                    IsReadOnly="True">
-            <telerik:GridViewDataColumn.Header>
-                <TextBlock Text="Linea" ToolTipService.ToolTip="Linea"/>
-            </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn>
 
         <telerik:GridViewDataColumn DataMemberBinding="{Binding Sentido}"
                                     Style="{StaticResource ColumnHeaderStyle}"
