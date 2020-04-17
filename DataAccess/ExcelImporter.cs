@@ -145,7 +145,7 @@ namespace DHOG_WPF.DataAccess
                 }
                 
             }
-            catch
+            catch(Exception Ex)
             {
                 DataBaseManager.DbConnection.Close();
                 throw;

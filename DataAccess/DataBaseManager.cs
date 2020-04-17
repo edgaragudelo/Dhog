@@ -1,6 +1,7 @@
 ﻿using log4net;
 using System;
 using System.Data.OleDb;
+using System.Windows;
 
 namespace DHOG_WPF.DataAccess
 {
@@ -9,12 +10,23 @@ namespace DHOG_WPF.DataAccess
         public static OleDbConnection DbConnection { get; private set; }
         public static OleDbConnection OutputDbConnection { get; private set; }
         private static readonly ILog log = LogManager.GetLogger(typeof(DataBaseManager));
+       
 
-        public DataBaseManager(string inputDataSource, string outputDataSource)
+        public DataBaseManager(string inputDataSource, string outputDataSource, string tipoBD)
         {
-            DbConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + inputDataSource);
-            OutputDbConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + outputDataSource);
-            //TODO: Nombre de base de datos debe ser un parámetro de la aplicación
+          
+            if (tipoBD=="Access") 
+            {
+                DbConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + inputDataSource);
+                OutputDbConnection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + outputDataSource);             
+            }
+
+            if (tipoBD == "Sql Server") 
+            {
+                DbConnection = new OleDbConnection(inputDataSource);
+               OutputDbConnection = new OleDbConnection(outputDataSource);
+            }
+
         }
 
         public static OleDbDataReader ReadData(string query)

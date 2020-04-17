@@ -64,6 +64,8 @@ namespace DHOG_WPF
 
         string Rutain;
         string Rutaout;
+        string bdentradasql;
+        string bdsalidasql;
 
         public DHOGMainWindow()
         {
@@ -88,51 +90,16 @@ namespace DHOG_WPF
                 convertingDB = false;
                 InitializeComponent();
                 XmlConfigurator.Configure();
-                dhogDataBaseViewModel = DataContext as DHOGDataBaseViewModel;
-                dhogDataBaseViewModel.CaseScenarioChanged += UpdateChartTabs;
-                Show();
-                Rutain = ConfigurationManager.AppSettings.Get("RutaEntrada");
-                Rutaout = ConfigurationManager.AppSettings.Get("RutaSalida");
-                DBConversionBusyIndicator.IsBusy = true;
                 
+
                 selectCaseDialog = new DHOGDataBaseSelectionDialog();
-                selectCaseDialog.DataContext = DataContext;
-               
-                selectCaseDialog.DBFileTextBox.Text = Rutain;
-                
-             
-                selectCaseDialog.Owner = this;
-
-                //TODO: Testing code 
-                /* CodeToDelete!!! */
-                /*dhogDataBaseViewModel.InputDBFile = "E:\\Alejandra\\Documents\\Proyectos\\DHOG\\Pruebas\\20171230\\DHOG_MENSUAL.accdb";
-                DHOGDataBaseDataAccess dhogDataBaseAccess = new DHOGDataBaseDataAccess(dhogDataBaseViewModel.InputDBFile, dhogDataBaseViewModel.OutputDBFile);
-                selectCaseDialog.ValidDBFile = true;
-                /* End CodeToDelete!!!*/
-
-
-                //Rutain = Settings.Default.RutaEntrada;
-                //Rutaout = Settings.Default.RutaSalida;
-
-
-                dhogDataBaseViewModel.InputDBFile = Rutain;
-                //dhogDataBaseViewModel.OutputDBFile = Rutaout;
-                selectCaseDialog.ShowDialog();
-
-                if (selectCaseDialog.Economico.IsChecked == true)
-                {
-                    Tipocaso = 0;
-                    dhogDataBaseViewModel.TipoDespacho = "Tipo Despacho:Económico";
-                    Tipodespa.Content = "Tipo Despacho:Económico";
-                }
-                if (selectCaseDialog.Hidrotermico.IsChecked == true)
-                {
-                    Tipocaso = 1;
-                    Tipodespa.Content = "Tipo Despacho:Hidrotérmico";
-                    dhogDataBaseViewModel.TipoDespacho = "Tipo Despacho:Hidrotérmico";
-                }
-
-                
+                selectCaseDialog.DataContext = DataContext;     
+                dhogDataBaseViewModel = DataContext as DHOGDataBaseViewModel;
+                selectCaseDialog.ShowDialog();     
+                dhogDataBaseViewModel.CaseScenarioChanged += UpdateChartTabs;
+                Show();                
+                DBConversionBusyIndicator.IsBusy = true;               
+                selectCaseDialog.Owner = this;               
 
                 if (selectCaseDialog.ValidDBFile)
                     LoadCase();
@@ -180,34 +147,15 @@ namespace DHOG_WPF
                     currentDescription = dhogDataBaseViewModel.Description;
                     InitializeCaseWorkingSpace();
                     DBConversionBusyIndicator.IsBusy = false;
-                    string text1 = dhogDataBaseViewModel.InitialDate;
-                    
+                    string text1 = dhogDataBaseViewModel.InitialDate;               
                    
-
                     if (text1.Length == 9)
                         text1 = "0" + text1;
 
-                    //var fec = año + "/" + mes + "/" + dia;
-                    //String Fecha2 = fec;
-                    //Fecha2 = "'" + Fecha2 + "'";
-
-                  
-
-
-                    //    string initialPeriod = filesReadingParameters.InitialPeriod.ToString();
-                    //if (initialPeriod.Length == 1)
-                    //    initialPeriod = "0" + initialPeriod;
-
                     FechaOriginal = text1;
-
                     DateTime value;
-
-                    value = DateTime.ParseExact(FechaOriginal, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-                    //DateTime value = Convert.ToDateTime(text1);
-
+                    value = DateTime.ParseExact(FechaOriginal, "dd/MM/yyyy", CultureInfo.InvariantCulture);  
                     text1 = value.ToString("dddd, d\" de\" MMMM yyyy");
-
                     dhogDataBaseViewModel.InitialDate = text1;
                 }
                 else if (!convertingDB)
@@ -232,8 +180,7 @@ namespace DHOG_WPF
             {
                 RadWindow.Alert(new DialogParameters
                 {
-                    Content = ex.Message,
-                    //Content = MessageUtil.FormatMessage("FATAL.DBConnectionError"),
+                    Content = ex.Message,               
                     Owner = this
                 });
                 DBConversionBusyIndicator.IsBusy = false;
@@ -248,9 +195,7 @@ namespace DHOG_WPF
             selectCaseDialog = new DHOGDataBaseSelectionDialog();
             selectCaseDialog.Owner = this;
             selectCaseDialog.DataContext = DataContext;
-            selectCaseDialog.ShowDialog();
-            if (selectCaseDialog.Economico.IsChecked == true) Tipocaso = 0;
-            if (selectCaseDialog.Hidrotermico.IsChecked == true) Tipocaso = 1;
+            selectCaseDialog.ShowDialog(); 
             if (selectCaseDialog.ValidDBFile)
             {
                 CloseAllTabs();
@@ -719,7 +664,7 @@ namespace DHOG_WPF
             //    CreateInputGroups();
             //else
             //    CreateInputGroupsDespacho();
-            CreateOutputGroups(1); // TODO: Delete after testing!
+            CreateOutputGroups(0); // TODO: Delete after testing!
         }
 
         private void EnableMenus()
@@ -843,11 +788,10 @@ namespace DHOG_WPF
 
         private void OutputEntitiesTreeView_Selected(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
-
-
-           
+                                  
             if (NumeroTrees == 0)
-            {   CreateOutputGroups(1);
+            {
+                CreateOutputGroups(1);
                 NumeroTrees++;
                 List<EntityType> ColeccionUpdate = new List<EntityType>()
                 {
@@ -1130,15 +1074,18 @@ namespace DHOG_WPF
 
         private void ExecutionMenuItem_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
-            ExecutionDialog executionDialog = new ExecutionDialog(dhogDataBaseViewModel.DBFolder, dhogDataBaseViewModel.InputDBFile, dhogDataBaseViewModel.InitialDate);
+            ExecutionDialog executionDialog = new ExecutionDialog(dhogDataBaseViewModel.DBFolder, dhogDataBaseViewModel.InputDBFile, dhogDataBaseViewModel.InitialDate, dhogDataBaseViewModel.TipoBD);
             CloseAllTabs();
             executionDialog.ShowDialog();
             var a = executionDialog.numScenarios;
+            NumeroTrees = 0;
+            //OutputEntitiesTreeView.SelectedItem = true;
+           CreateOutputGroups(1);
         }
 
         private void RutasMenuItem_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
         {
-            ExecutionDialog executionDialog = new ExecutionDialog(dhogDataBaseViewModel.DBFolder, dhogDataBaseViewModel.InputDBFile, dhogDataBaseViewModel.InitialDate);
+            ExecutionDialog executionDialog = new ExecutionDialog(dhogDataBaseViewModel.DBFolder, dhogDataBaseViewModel.InputDBFile, dhogDataBaseViewModel.InitialDate, dhogDataBaseViewModel.TipoBD);
             executionDialog.ShowDialog();
         }
 

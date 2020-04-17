@@ -20,51 +20,70 @@ namespace DHOG_WPF.Dialogs
     {
 
         //OleDbDataReader reader;
-       int TipoDespacho;
+     
+       int TipoBD;
+       string Rutain, Rutaout, bdentradasql, bdsalidasql,rutacodigo;
 
         public DHOGDataBaseSelectionDialog()
         {
             InitializeComponent();           
             ValidDBFile = false;
+            LeerParametrosCarga();
+        }
 
-           
-           
-
-
+        private void LeerParametrosCarga()
+        {
+            Rutain = ConfigurationManager.AppSettings.Get("RutaEntrada");
+            Rutaout = ConfigurationManager.AppSettings.Get("RutaSalida");
+            rutacodigo= ConfigurationManager.AppSettings.Get("RutaCodigo");
+            bdentradasql = ConfigurationManager.ConnectionStrings["DhogEntrada"].ConnectionString;
+            bdsalidasql = ConfigurationManager.ConnectionStrings["DhogSalida"].ConnectionString;
         }
 
         private void LoadDBButton_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(DBFileTextBox.Text))
+            DHOGDataBaseViewModel dhogDataBaseViewModel = DataContext as DHOGDataBaseViewModel;
+            if (TipoBD == 1)
             {
-                DHOGDataBaseViewModel dhogDataBaseViewModel = DataContext as DHOGDataBaseViewModel;
-                dhogDataBaseViewModel.InputDBFile = DBFileTextBox.Text;
-
-                if (Economico.IsChecked == true) TipoDespacho = 0;
-                if (Hidrotermico.IsChecked == true) TipoDespacho =1;
-               
-
-                if (File.Exists(dhogDataBaseViewModel.OutputDBFile)) //TODO: Delete when testing is over!
+                if (File.Exists(DBFileTextBox.Text))
                 {
-                    ValidDBFile = true;
-                    Close();
+                    dhogDataBaseViewModel.DBFolder = rutacodigo;
+                    dhogDataBaseViewModel.TipoBD = "Access";
+                    dhogDataBaseViewModel.InputDBFile = DBFileTextBox.Text;
+                    dhogDataBaseViewModel.OutputDBFile = Rutaout;
+
+                    if (File.Exists(dhogDataBaseViewModel.OutputDBFile)) //TODO: Delete when testing is over!
+                    {
+                        ValidDBFile = true;
+                        Close();
+                    }
+                    else
+                    {
+                        RadWindow.Alert(new DialogParameters
+                        {
+                            Content = "No existe el archivo " + dhogDataBaseViewModel.OutputDBFile + " en la ruta seleccionada.",
+                            Owner = this
+                        });
+                    }
                 }
                 else
                 {
                     RadWindow.Alert(new DialogParameters
                     {
-                        Content = "No existe el archivo " + dhogDataBaseViewModel.OutputDBFile + " en la ruta seleccionada.",
+                        Content = "No existe el archivo " + DBFileTextBox.Text + ".",
                         Owner = this
                     });
-                }  
+                }
             }
-            else
+            if (TipoBD == 2)
             {
-                RadWindow.Alert(new DialogParameters
-                {
-                    Content = "No existe el archivo " + DBFileTextBox.Text + ".",
-                    Owner = this
-                });
+                //dhogDataBaseViewModel.InputDBFile = bdentradasql;
+                dhogDataBaseViewModel.DBFolder = rutacodigo;
+                dhogDataBaseViewModel.TipoBD = "Sql Server";
+                dhogDataBaseViewModel.OutputDBFile = bdsalidasql.ToString();
+                dhogDataBaseViewModel.InputDBFile = DBFileTextBox.Text;                           
+                ValidDBFile = true;
+                Close();
             }
         }
 
@@ -72,45 +91,73 @@ namespace DHOG_WPF.Dialogs
 
         private void SelectDBFileButton_Click(object sender, RoutedEventArgs e)
         {
-            string Nombrefile,Directorio = null;
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Access Files|*.accdb";
-
-
-            if (DBFileTextBox.Text != "")
+            if (TipoBD == 1) //Access
             {
-              System.Windows.MessageBoxResult vble =   System.Windows.MessageBox.Show("Desea cambiar la base de datos?", "Carga de Base de Datos", MessageBoxButton.YesNo);
-                if (vble == MessageBoxResult.Yes)
-                {                   
+                string Nombrefile, Directorio = null;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Access Files|*.accdb";
+
+                if (DBFileTextBox.Text != "") //selecciono un archivo
+                {
+                    System.Windows.MessageBoxResult vble = System.Windows.MessageBox.Show("Desea cambiar la base de datos?", "Carga de Base de Datos", MessageBoxButton.YesNo);
+                    if (vble == MessageBoxResult.Yes)
+                    {
+                        if (openFileDialog.ShowDialog().ToString().Equals("OK"))
+                        {
+                            DBFileTextBox.Text = openFileDialog.FileName;
+                            Nombrefile = openFileDialog.SafeFileName;
+                            Directorio = DBFileTextBox.Text.Replace(Nombrefile, "");
+                        }
+                    }
+                }
+                else
+                {
+                    //OpenFileDialog openFileDialog = new OpenFileDialog();
+                    //openFileDialog.Filter = "Access Files|*.accdb";
                     if (openFileDialog.ShowDialog().ToString().Equals("OK"))
                     {
                         DBFileTextBox.Text = openFileDialog.FileName;
                         Nombrefile = openFileDialog.SafeFileName;
-                        Directorio = DBFileTextBox.Text.Replace(Nombrefile,"");
+                        Directorio = DBFileTextBox.Text.Replace(Nombrefile, "");
                     }
                 }
+
+                //string Rutain, Rutaout;
+                //Rutain = ConfigurationManager.AppSettings.Get("RutaEntrada");
+                //Rutaout = ConfigurationManager.AppSettings.Get("RutaSalida");
+                //Rutain = DBFileTextBox.Text;
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["RutaEntrada"].Value = DBFileTextBox.Text;
+                config.AppSettings.Settings["RutaSalida"].Value = Directorio + "DHOG_OUT.accdb"; //  DBFileTextBox.Text;
+                config.Save(ConfigurationSaveMode.Modified);
+                Rutain = DBFileTextBox.Text;
+                Rutaout = Directorio + "DHOG_OUT.accdb";
             }
-            else
+
+            if (TipoBD ==2)
             {
-                //OpenFileDialog openFileDialog = new OpenFileDialog();
-                //openFileDialog.Filter = "Access Files|*.accdb";
-                if (openFileDialog.ShowDialog().ToString().Equals("OK"))
-                {
-                    DBFileTextBox.Text = openFileDialog.FileName;
-                    Nombrefile = openFileDialog.SafeFileName;
-                    Directorio = DBFileTextBox.Text.Replace(Nombrefile, "");
-                }
+                DBFileTextBox.Text = bdentradasql;
+
             }
 
-            string Rutain, Rutaout;
-            Rutain = ConfigurationManager.AppSettings.Get("RutaEntrada");
-            Rutaout = ConfigurationManager.AppSettings.Get("RutaSalida");
-            Rutain = DBFileTextBox.Text;
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["RutaEntrada"].Value = DBFileTextBox.Text;
-            config.AppSettings.Settings["RutaSalida"].Value = Directorio + "DHOG_OUT.accdb"; //  DBFileTextBox.Text;
-            config.Save(ConfigurationSaveMode.Modified);
 
+        }
+
+
+
+
+        private void TipoBd(object sender, RoutedEventArgs e)
+        {
+            if (sender.ToString().Contains("Access"))
+            {
+                TipoBD = 1;
+                DBFileTextBox.Text = Rutain;
+            }
+            if (sender.ToString().Contains("Sql Server"))
+            {
+                TipoBD = 2;
+                DBFileTextBox.Text = bdentradasql;
+            }
         }
     }
 }

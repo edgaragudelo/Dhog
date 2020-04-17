@@ -7,20 +7,20 @@ namespace DHOG_WPF.DataAccess
 {
     public class RiversMappingDataAccess
     {
-        private static string table = "RioBasica";
-        //private static string table = "MapeoRios";
+        //private static string table = "RioBasica";
+        private static string table = "MapeoRios";
 
         public static List<NameMapping> GetObjects()
         {
             List<NameMapping> namesMapping = new List<NameMapping>();
 
-            string query = string.Format("SELECT Rio, Id " +
-                                         "FROM {0} " +
-                                         "ORDER BY id", table);
-
-            //string query = string.Format("SELECT Rio, Numero " +
+            //string query = string.Format("SELECT Rio, Id " +
             //                             "FROM {0} " +
-            //                             "ORDER BY Numero", table);
+            //                             "ORDER BY id", table);
+
+            string query = string.Format("SELECT Rio, Numero " +
+                                         "FROM {0} " +
+                                         "ORDER BY Numero", table);
 
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             while (reader.Read())

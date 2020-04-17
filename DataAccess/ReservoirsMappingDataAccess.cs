@@ -7,17 +7,17 @@ namespace DHOG_WPF.DataAccess
 {
     public class ReservoirsMappingDataAccess
     {
-        //private static string table = "MapeoEmbalses";
-        private static string table = "EmbalseBasica";
+        private static string table = "MapeoEmbalses";
+        //private static string table = "EmbalseBasica";
 
         public static List<NameMapping> GetObjects()
         {
             List<NameMapping> namesMapping = new List<NameMapping>();
 
-            //string query = string.Format("SELECT Embalse, Recurso " +
-            string query = string.Format("SELECT nombre, nombre " +
+            string query = string.Format("SELECT Embalse, Recurso " +
+            //string query = string.Format("SELECT nombre, nombre " +
                                          "FROM {0} " +
-                                         "ORDER BY nombre", table);
+                                         "ORDER BY Embalse", table);
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             while (reader.Read())
                 namesMapping.Add(new NameMapping(reader.GetString(0), reader.GetString(1)));
@@ -28,9 +28,9 @@ namespace DHOG_WPF.DataAccess
 
         public static void UpdateObject(NameMapping dataObject)
         {
-            string query = string.Format("SELECT nombre " +
+            string query = string.Format("SELECT Embalse " +
                                          "FROM {0} " +
-                                         "WHERE nombre = '{1}'", table, dataObject.DHOGName);
+                                         "WHERE Embalse = '{1}'", table, dataObject.DHOGName);
 
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             if (!reader.Read())

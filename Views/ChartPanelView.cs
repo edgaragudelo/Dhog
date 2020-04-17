@@ -328,7 +328,7 @@ namespace DHOG_WPF.Views
                         break;
                 }
             }
-            catch
+            catch (Exception Ex)
             {
                 throw;
             }

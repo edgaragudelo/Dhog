@@ -252,6 +252,8 @@
                                                  SelectionMode="Single" 
                                                  ItemTemplate="{StaticResource MainWindowGroupItemTemplate}"
                                                  Selected="OutputEntitiesTreeView_Selected"
+                                                  ItemClick="OutputEntitiesTreeView_Selected"
+                                                 Checked="OutputEntitiesTreeView_Selected"
                                                  Background="White" Margin="10" >
                             </telerik:RadTreeView>
                         </Grid>

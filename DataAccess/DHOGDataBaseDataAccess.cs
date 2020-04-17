@@ -12,10 +12,10 @@ namespace DHOG_WPF.DataAccess
         private string dbFile;
         private static string table = "InfoBD";
 
-        public DHOGDataBaseDataAccess(string inputDataSource, string ouputDataSource)
+        public DHOGDataBaseDataAccess(string inputDataSource, string ouputDataSource, string TipobaseDatos)
         {
-            dbFile = inputDataSource;
-            DataBaseManager dataBaseManager = new DataBaseManager(inputDataSource, ouputDataSource);
+            dbFile = inputDataSource;            
+            DataBaseManager dataBaseManager = new DataBaseManager(inputDataSource, ouputDataSource,TipobaseDatos);
         }
 
         public static void GetDBInformation(DHOGDataBase dhogCase)
@@ -37,7 +37,7 @@ namespace DHOG_WPF.DataAccess
                             dhogCase.Version = Convert.ToDouble(reader.GetValue(1));
                         }
                     }
-                    catch
+                    catch (Exception Ex)
                     {
                         dhogCase.Version = 0;
                         DataBaseManager.DbConnection.Close();
@@ -46,7 +46,7 @@ namespace DHOG_WPF.DataAccess
                     DataBaseManager.DbConnection.Close();
                 }
             }
-            catch
+            catch (Exception Ex)
             {
                 DataBaseManager.DbConnection.Close();
                 throw;

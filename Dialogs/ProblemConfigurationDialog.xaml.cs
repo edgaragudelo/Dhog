@@ -621,11 +621,11 @@ namespace DHOG_WPF.Dialogs
             Window owner = this.Owner;
             Close();
             ConfigCasoDialog configCasoDialog = new ConfigCasoDialog(dbFolder, dbFile, FechaIni);
-            ExecutionDialog executionDialog = new ExecutionDialog(dbFolder, dbFile, FechaIni);
+            //ExecutionDialog executionDialog = new ExecutionDialog(dbFolder, dbFile, FechaIni);
             configCasoDialog.Owner = owner;
             configCasoDialog.ShowDialog();
-            executionDialog.Owner = owner;
-            executionDialog.ShowDialog();
+            //executionDialog.Owner = owner;
+            //executionDialog.ShowDialog();
         }
 
         private void Evento3(object sender, EventArgs e)
@@ -661,9 +661,9 @@ namespace DHOG_WPF.Dialogs
         {
             Window owner = this.Owner;
             Close();
-            ExecutionDialog executionDialog = new ExecutionDialog(dbFolder,dbFile,FechaIni);
-            executionDialog.Owner = owner;
-            executionDialog.ShowDialog();
+            //ExecutionDialog executionDialog = new ExecutionDialog(dbFolder,dbFile,FechaIni);
+            //executionDialog.Owner = owner;
+            //executionDialog.ShowDialog();
         }
 
 

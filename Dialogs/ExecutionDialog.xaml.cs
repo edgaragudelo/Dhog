@@ -27,6 +27,7 @@ namespace DHOG_WPF.Dialogs
         string basedatos;
         private OleDbDataReader reader;
 
+        int Tipobasedatos;
         String ruta;                                     //               'Ruta del archivo dhog.xls y bases de datos
         String rutaOpl1;                                     //            'Ruta de los archivos del OPL
         String rutaModelo;                                     //         'Ruta de los archivos del modelo matemático
@@ -48,14 +49,24 @@ namespace DHOG_WPF.Dialogs
 
         public int numScenarios { get; set; }
 
-        public ExecutionDialog(string dbFolder, string dbFile, string fechaIni)
+        public ExecutionDialog(string dbFolder, string dbFile, string fechaIni,string tipobd)
         {
             InitializeComponent();
             executionParametersViewModel = new ExecutionParametersViewModel();
             ExecutionPanel.DataContext = executionParametersViewModel;
-            this.dbFolder = dbFolder;
+            this.dbFolder = dbFolder;           
+
             basedatos = dbFile;
             ruta = dbFolder;
+
+            if (tipobd == "Sql Server")
+            {
+                int jj = basedatos.IndexOf("Initial Catalog=") + 16;
+                basedatos = basedatos.Substring(basedatos.IndexOf("Initial Catalog=") + 16);
+                Tipobasedatos = 2;
+            }
+            else
+                Tipobasedatos = 1;
         }
 
         public double Calcularmaxescenarios(double valor1)
@@ -92,7 +103,8 @@ namespace DHOG_WPF.Dialogs
                 //sw.WriteLine(rutaOpl1 + "\\oplrun.exe " + rutaModelo + "\\DHOG.mod " + rutaModelo + "\\DHOG.dat " + rutaModelo + "\\DHOG_UP.dat");
 
                 sw.WriteLine("cd /D " + ruta);
-                sw.WriteLine(" python dhog.py "+basedatos);
+                sw.WriteLine(" python dhog.py "+ Tipobasedatos.ToString() + " " + basedatos);
+                //sw.WriteLine(" python dhog.py " + " " + basedatos);
                 sw.WriteLine("pause");
 
 

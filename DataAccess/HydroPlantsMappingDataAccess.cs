@@ -6,18 +6,18 @@ namespace DHOG_WPF.DataAccess
 {
     public class HydroPlantsMappingDataAccess
     {
-        //private static string table = "MapeoRecursosHidro";
-        private static string table = "RecursoHidroBasica";
+        private static string table = "MapeoRecursosHidro";
+        //private static string table = "RecursoHidroBasica";
         public static List<NameMapping> GetObjects()
         {
             List<NameMapping> namesMapping = new List<NameMapping>();
 
-            //string query = string.Format("SELECT Recurso, Planta " +
-            //                             "FROM {0} " +
-            //                             "ORDER BY Recurso", table);
-            string query = string.Format("SELECT Nombre, Nombre " +
-                                        "FROM {0} " +
-                                        "ORDER BY Nombre", table);
+            string query = string.Format("SELECT Recurso, Planta " +
+                                         "FROM {0} " +
+                                         "ORDER BY Recurso", table);
+            //string query = string.Format("SELECT Nombre, Nombre " +
+            //                            "FROM {0} " +
+            //                            "ORDER BY Nombre", table);
             OleDbDataReader reader = DataBaseManager.ReadData(query);
             while (reader.Read())
                 namesMapping.Add(new NameMapping(reader.GetString(0), reader.GetString(1)));

@@ -50,11 +50,22 @@ namespace DHOG_WPF.ViewModels
             set
             {
                 dhogDataBase.InputDBFile = value;
-                if (File.Exists(dhogDataBase.InputDBFile))
-                {
-                    DBFolder = Path.GetDirectoryName(value);
-                    DHOGDataBaseDataAccess dhogDataBaseAccess = new DHOGDataBaseDataAccess(dhogDataBase.InputDBFile, dhogDataBase.OutputDBFile);
-                }
+                //if (TipoBD == "Access")
+                //{
+                //    if (File.Exists(dhogDataBase.InputDBFile))
+                //    {
+                //        DBFolder = Path.GetDirectoryName(value);                       
+                //    }
+                //}
+
+                //if (TipoBD == "Sql Server")
+                //{                    
+                //    //int jj = dhogDataBase.InputDBFile.IndexOf("Initial Catalog=") + 16;
+                //    DBFolder = dhogDataBase.InputDBFile.Substring(dhogDataBase.InputDBFile.IndexOf("Initial Catalog=") + 16);                    
+                //}
+               
+
+                DHOGDataBaseDataAccess dhogDataBaseAccess = new DHOGDataBaseDataAccess(dhogDataBase.InputDBFile, dhogDataBase.OutputDBFile, dhogDataBase.TipoBD);
                 RaisePropertyChanged("InputDBFile");
             }
         }
@@ -65,19 +76,23 @@ namespace DHOG_WPF.ViewModels
             {
                 return dhogDataBase.OutputDBFile;
             }
+            set
+            {
+                dhogDataBase.OutputDBFile = value;
+                RaisePropertyChanged("OutputDBFile");
+            }
         }
 
-        public string TipoDespacho
+        public string TipoBD
         {
             get
             {
-                return dhogDataBase.TipoDespacho;
+                return dhogDataBase.TipoBD;
             }
             set
             {
-                dhogDataBase.TipoDespacho = value;
-               
-                RaisePropertyChanged("TipoDespacho");
+                dhogDataBase.TipoBD = value;               
+                RaisePropertyChanged("TipoBD");
             }
         }
 
