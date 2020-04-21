@@ -48,19 +48,41 @@
             </telerik:GridViewDataColumn.Header>
         </telerik:GridViewDataColumn>
 
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding InitialPeriod}"
+        <telerik:GridViewComboBoxColumn x:Name="Name"
+                                        DataMemberBinding="{Binding InitialPeriod}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Etapas}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="EtapaInicial" ToolTipService.ToolTip="EtapaInicial"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
+
+        <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding InitialPeriod}"
                                     Style="{StaticResource ColumnHeaderStyle}">
             <telerik:GridViewDataColumn.Header>
                 <TextBlock Text="EtapaInicial" ToolTipService.ToolTip="EtapaInicial"/>
             </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn>
+        </telerik:GridViewDataColumn>-->
 
-        <telerik:GridViewDataColumn DataMemberBinding="{Binding FinalPeriod}"
+        <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding FinalPeriod}"
                                     Style="{StaticResource ColumnHeaderStyle}">
             <telerik:GridViewDataColumn.Header>
                 <TextBlock Text="EtapaFinal" ToolTipService.ToolTip="EtapaFinal"/>
             </telerik:GridViewDataColumn.Header>
-        </telerik:GridViewDataColumn>
+        </telerik:GridViewDataColumn>-->
+
+        <telerik:GridViewComboBoxColumn x:Name="Name1"
+                                        DataMemberBinding="{Binding FinalPeriod}"
+                                        EditTriggers="CellClick"
+                                        Style="{StaticResource ColumnHeaderStyle}"
+                                        ItemsSource="{Binding Etapas}">
+            <telerik:GridViewComboBoxColumn.Header>
+                <TextBlock Text="EtapaFinal" ToolTipService.ToolTip="EtapaFinal"/>
+            </telerik:GridViewComboBoxColumn.Header>
+        </telerik:GridViewComboBoxColumn>
+
     </telerik:RadGridView.Columns>
 </local:BaseDataGridView>
 

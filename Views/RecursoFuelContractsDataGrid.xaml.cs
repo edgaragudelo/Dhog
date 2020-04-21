@@ -16,27 +16,7 @@ namespace DHOG_WPF.Views
         public RecursoFuelContractsDataGrid(EntitiesCollections entitiesCollections) : base(entitiesCollections)
         {
             InitializeComponent();
-
-            //Contrato.ItemsSource
-           
-            string query = null;
-            string Contract = null;
-         
-            List<string> lista = new List<string>();
-            query = "SELECT DISTINCT(Nombre)FROM ContratoCombustibleBasica";
-            reader = DataBaseManager.ReadData(query);
-            while (reader.Read())
-            {
-                Contract = (reader.GetString(0));
-               
-                lista.Add(Contract);
-            }
-            DataBaseManager.DbConnection.Close();
-           // Contrato.DataContext = lista;
-            (Contrato).ItemsSource = lista; // Country.GetCountries();
-
-            
-
+            LLenarContratos();
             RecursoFuelContractsCollectionViewModel items = ItemsSource as RecursoFuelContractsCollectionViewModel;
             if (items.Count == 1)
             {
@@ -51,13 +31,31 @@ namespace DHOG_WPF.Views
             }
         }
 
-       
+       private void LLenarContratos()
+        {
+            string query = null;
+            string Contract = null;
+
+            List<string> lista = new List<string>();
+            query = "SELECT DISTINCT(Nombre)FROM ContratoCombustibleBasica";
+            reader = DataBaseManager.ReadData(query);
+            while (reader.Read())
+            {
+                Contract = (reader.GetString(0));
+                lista.Add(Contract);
+            }
+            DataBaseManager.DbConnection.Close();
+            // Contrato.DataContext = lista;
+            (Contrato).ItemsSource = lista; // Country.GetCountries();  
+
+        }
 
         private void DataGrid_AddingNewDataItem(object sender, Telerik.Windows.Controls.GridView.GridViewAddingNewEventArgs e)
         {
             CurrentColumn = Contrato;
             NameColumn.IsReadOnly = false;
             Contrato.IsReadOnly = false;
+            LLenarContratos();
 
 
             //CurrentColumn = NameColumn;
@@ -69,6 +67,7 @@ namespace DHOG_WPF.Views
 
             Contrato.IsReadOnly = false;
             NameColumn.IsReadOnly = false;
+            LLenarContratos();
         }
 
         private void LLenarDatos(object sender, System.Windows.RoutedEventArgs e)
@@ -82,7 +81,6 @@ namespace DHOG_WPF.Views
             while (reader.Read())
               // this.Contrato=(reader.GetString(0));
             Contrato.ItemsSourceBinding.Source = Contract;
-
             DataBaseManager.DbConnection.Close();
         }
 

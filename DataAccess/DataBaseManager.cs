@@ -70,6 +70,26 @@ namespace DHOG_WPF.DataAccess
         }
 
 
+        public static void ExecuteQuery_Output(string query)
+        {
+            using (OleDbCommand command = new OleDbCommand(query, OutputDbConnection))
+            {
+                OutputDbConnection.Open();
+                try
+                {
+                    command.ExecuteNonQuery();
+                    OutputDbConnection.Close();
+                }
+                catch (Exception e)
+                {
+                    log.Fatal(e.Message);
+                    OutputDbConnection.Close();
+                    throw;
+                }
+            }
+        }
+
+
 
         public static void ExecuteQuery(string query)
         {

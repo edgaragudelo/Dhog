@@ -174,6 +174,8 @@ namespace DHOG_WPF.ViewModels
 
         public ObservableCollection<string> Cortes { get; private set; }
 
+        public ObservableCollection<int> Etapas { get; private set; }
+
         public ObservableCollection<string> Lineas { get; private set; }
 
         public EntitiesCollections(DHOGDataBaseViewModel dhogCaseViewModel)
@@ -329,6 +331,7 @@ namespace DHOG_WPF.ViewModels
             CreateBarras();
             CreateCortes();
             CreateLineas();
+            //CreateEtapas();
 
         }
 
@@ -524,8 +527,21 @@ namespace DHOG_WPF.ViewModels
 
             ThermalPlantsCollection.CollectionChanged += ThermalPlantsCollection_CollectionChanged;
             ThermalPlantsCollection.ItemEndEdit += ThermalPlantsCollection_ItemEndEdit;
-
             RaisePropertyChanged("PeriodsCollection");
+
+            Etapas = new ObservableCollection<int>();
+
+            foreach (PeriodViewModel UIObject in PeriodsCollection)
+            {
+                if (UIObject.Name != 0)
+                {
+                    if (!Etapas.Contains(UIObject.Name))
+                        Etapas.Add(UIObject.Name);
+                }
+            }
+
+            RaisePropertyChanged("Etapas");
+
         }
 
         private void CreatePeriodicInflowsCollection()
@@ -774,6 +790,21 @@ namespace DHOG_WPF.ViewModels
             RaisePropertyChanged("Cortes");
         }
 
+
+        //private void CreateEtapas()
+        //{
+        //    Etapas = new ObservableCollection<string>();
+
+        //    foreach (PeriodsDataAccess UIObject in PeriodsCollection)
+        //        if (UIObject. != null)
+        //        {
+        //            if (!Etapas.Contains(UIObject.Name))
+        //                Etapas.Add(UIObject.Name);
+        //        }
+
+
+        //    RaisePropertyChanged("Etapas");
+        //}
 
 
         private void CreateNonConventionalPlantsScenario1()

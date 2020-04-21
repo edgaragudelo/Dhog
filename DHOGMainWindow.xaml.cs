@@ -36,6 +36,8 @@ namespace DHOG_WPF
     public partial class DHOGMainWindow : Window
     {
         DHOGDataBaseViewModel dhogDataBaseViewModel;
+        ExecutionParametersViewModel EjecucionParametros;
+        int Ejecu;
         public static double DHOGVersion = 3.3;
         private string lastTabSelected;
         private bool caseLoaded;
@@ -62,10 +64,10 @@ namespace DHOG_WPF
 
         public string FechaOriginal { get; private set; }
 
-        string Rutain;
-        string Rutaout;
-        string bdentradasql;
-        string bdsalidasql;
+        //string Rutain;
+        //string Rutaout;
+        //string bdentradasql;
+        //string bdsalidasql;
 
         public DHOGMainWindow()
         {
@@ -385,6 +387,7 @@ namespace DHOG_WPF
                 new InputEntityViewModel("RecursoRampa", new RecursoRampaDataGrid(EntitiesCollections), EntityType.RecursoRampa),
                 new InputEntityViewModel("RecursoUnidad", new RecursoUnidadDataGrid(EntitiesCollections), EntityType.RecursoUnidad),                             
                 new InputEntityViewModel("UnidadPeriodo", new UnidadPeriodoDataGrid(EntitiesCollections), EntityType.UnidadPeriodo),
+                new InputEntityViewModel("ZonaUnidad", new ZonaUnidadDataGrid(EntitiesCollections), EntityType.ZonaUnidad),
              };
             InputGroups.Add(new InputGroupViewModel("Despacho Económico", entitiesInformation, new Uri(@"../Images/ThermalPlants.png", UriKind.RelativeOrAbsolute)));
 
@@ -408,10 +411,10 @@ namespace DHOG_WPF
             entitiesInformation = new ObservableCollection<InputEntityViewModel>
             {
                 new InputEntityViewModel("ZonaBasica", new ZonesDataGrid(EntitiesCollections), EntityType.Zone),
-                new InputEntityViewModel("ZonaUnidad", new ZonaUnidadDataGrid(EntitiesCollections), EntityType.ZonaUnidad),
+                //new InputEntityViewModel("ZonaUnidad", new ZonaUnidadDataGrid(EntitiesCollections), EntityType.ZonaUnidad),
                 new InputEntityViewModel("ZonaEspecial", new EspecialZonesDataGrid(EntitiesCollections), EntityType.Zone),
                 new InputEntityViewModel("ZonaPeriodo", new PeriodicZonesDataGrid(EntitiesCollections), EntityType.PeriodicZone),
-              //  new InputEntityViewModel("ZonaRecurso", new ZonesPlantsPanel(EntitiesCollections), EntityType.Zone),
+                new InputEntityViewModel("ZonaRecurso", new ZonesPlantsPanel(EntitiesCollections), EntityType.Zone),
 
                 
             };
@@ -422,112 +425,7 @@ namespace DHOG_WPF
 
 
 
-        private void CreateInputGroupsDespacho()
-        {
-            var culture = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
-
-            InputGroups = new ObservableCollection<InputGroupViewModel>();
-
-            ObservableCollection<InputEntityViewModel> entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                //new InputEntityViewModel("DemandaBloque", new PeriodicLoadBlocksDataGrid(EntitiesCollections), EntityType.PeriodicLoadBlock),
-                //new InputEntityViewModel("EscenariosBasica", new ScenariosDataGrid(EntitiesCollections), EntityType.Scenario),
-                new InputEntityViewModel("PeriodoBasica", new PeriodsDataGrid(EntitiesCollections), EntityType.Period),
-            };
-            InputGroups.Add(new InputGroupViewModel("Periodo y Demanda", entitiesInformation, new Uri(@"../Images/Period.png", UriKind.RelativeOrAbsolute)));
-
-            entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                //new InputEntityViewModel("BloqueBasica", new BlocksDataGrid(EntitiesCollections), EntityType.Block),
-                new InputEntityViewModel("BarraPeriodo", new PeriodicBarraDataGrid(EntitiesCollections), EntityType.PeriodicBarra)
-            };
-            InputGroups.Add(new InputGroupViewModel("Barras", entitiesInformation, new Uri(@"../Images/Blocks.png", UriKind.RelativeOrAbsolute)));
-
-            entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                //new InputEntityViewModel("AreaBasica", new AreasDataGrid(EntitiesCollections), EntityType.Area),
-                new InputEntityViewModel("AreaPeriodo", new PeriodicAreasDataGrid(EntitiesCollections), EntityType.PeriodicArea)
-            };
-            InputGroups.Add(new InputGroupViewModel("Áreas", entitiesInformation, new Uri(@"../Images/Areas.png", UriKind.RelativeOrAbsolute)));
-
-            entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                new InputEntityViewModel("LineaBarra", new LineaBarraDataGrid(EntitiesCollections), EntityType.LineaBarra),
-                new InputEntityViewModel("LineaPeriodo", new LineaPeriodoDataGrid(EntitiesCollections), EntityType.LineaPeriodo)
-
-            };
-          InputGroups.Add(new InputGroupViewModel("Lineas", entitiesInformation, new Uri(@"../Images/Companies.png", UriKind.RelativeOrAbsolute)));
-
-            entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                new InputEntityViewModel("CortePeriodo", new CortePeriodoDataGrid(EntitiesCollections), EntityType.CortePeriodo),
-                new InputEntityViewModel("CorteLinea", new CorteLineaDataGrid(EntitiesCollections), EntityType.CorteLinea)
-            };
-            InputGroups.Add(new InputGroupViewModel("Cortes", entitiesInformation, new Uri(@"../Images/Fuels2.png", UriKind.RelativeOrAbsolute)));
-
-            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            //{
-            //    new InputEntityViewModel("ContratoCombustibleBasica", new FuelContractsDataGrid(EntitiesCollections), EntityType.FuelContract),
-            //    new InputEntityViewModel("ContratoCombustiblePeriodo", new PeriodicFuelContractsDataGrid(EntitiesCollections), EntityType.PeriodicFuelContract),
-            //     new InputEntityViewModel("ContratoCombustibleRecurso", new RecursoFuelContractsDataGrid(EntitiesCollections), EntityType.RecursoFuelContract),
-            //};
-            //InputGroups.Add(new InputGroupViewModel("Contratos Combustibles", entitiesInformation, new Uri(@"../Images/Contracts.png", UriKind.RelativeOrAbsolute)));
-
-            entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                new InputEntityViewModel("UnidadBarra", new UnidadBarraDataGrid(EntitiesCollections), EntityType.UnidadBarra),
-                new InputEntityViewModel("RecursoUnidad", new RecursoUnidadDataGrid(EntitiesCollections), EntityType.RecursoUnidad),
-                new InputEntityViewModel("UnidadPeriodo", new UnidadPeriodoDataGrid(EntitiesCollections), EntityType.UnidadPeriodo),
-                //new InputEntityViewModel("RecursoHidroVariable", new VariableHydroPlantsDataGrid(EntitiesCollections), EntityType.VariableHydroPlant),
-            };
-            InputGroups.Add(new InputGroupViewModel("Unidades", entitiesInformation, new Uri(@"../Images/HydroPlants.png", UriKind.RelativeOrAbsolute)));
-
-            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            //{
-            //    new InputEntityViewModel("aportesHidricos", new PeriodicInflowsDataGrid(EntitiesCollections), EntityType.PeriodicInflow),
-            //    new InputEntityViewModel("ElementoHidraulicoBasica", new HydroElementsDataGrid(EntitiesCollections), EntityType.HydroElement),
-            //    new InputEntityViewModel("ElementoHidraulicoPeriodo", new PeriodicHydroElementsDataGrid(EntitiesCollections), EntityType.PeriodicHydroElement),
-            //    new InputEntityViewModel("EmbalseBasica", new ReservoirsDataGrid(EntitiesCollections), EntityType.Reservoir),
-            //    new InputEntityViewModel("EmbalsePeriodo", new PeriodicReservoirsDataGrid(EntitiesCollections), EntityType.PeriodicReservoir),
-            //    new InputEntityViewModel("SistemaHidroBasica", new HydroSystemsDataGrid(EntitiesCollections), EntityType.HydroSystem),
-            //    new InputEntityViewModel("SistemaHidroPeriodo", new PeriodicHydroSystemsDataGrid(EntitiesCollections), EntityType.PeriodicHydroSystem),
-            //   // new InputEntityViewModel("TopologiaHidraulica", new HydroTopologyPanel(EntitiesCollections), EntityType.HydroTopology)
-            //};
-            //InputGroups.Add(new InputGroupViewModel("Elementos Hidráulicos", entitiesInformation, new Uri(@"../Images/HydroElements2.png", UriKind.RelativeOrAbsolute)));
-
-            entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                new InputEntityViewModel("RecursosBasica", new RecursoBasicaDataGrid(EntitiesCollections), EntityType.RecursoBasica),
-                new InputEntityViewModel("RecursoPrecio", new RecursoPrecioDataGrid(EntitiesCollections), EntityType.RecursoPrecio),
-                new InputEntityViewModel("RecursoPeriodo", new RecursoPeriodoDataGrid(EntitiesCollections), EntityType.RecursoPeriodo),
-                new InputEntityViewModel("RecursoFactible", new RecursoFactibleDataGrid(EntitiesCollections), EntityType.RecursoFactible),
-                 new InputEntityViewModel("RecursoRampa", new RecursoRampaDataGrid(EntitiesCollections), EntityType.RecursoRampa),
-            };
-            InputGroups.Add(new InputGroupViewModel("Recursos", entitiesInformation, new Uri(@"../Images/ThermalPlants.png", UriKind.RelativeOrAbsolute)));
-
-            //entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            //{
-            //    new InputEntityViewModel("RecursoNoCoBasica", new NonConventionalPlantsDataGrid(EntitiesCollections), EntityType.NonConventionalPlant),
-            //    new InputEntityViewModel("RecursoNoCoPeriodo", new PeriodicNonConventionalPlantsDataGrid(EntitiesCollections), EntityType.PeriodicNonConventionalPlant),
-            //    new InputEntityViewModel("RecursoNoCoBloque", new NonConventionalPlantBlocksDataGrid(EntitiesCollections), EntityType.NonConventionalPlantBlock)
-            //};
-            //InputGroups.Add(new InputGroupViewModel("Recursos No Convencionales", entitiesInformation, new Uri(@"../Images/NonConventionalPlants.png", UriKind.RelativeOrAbsolute)));
-
-            entitiesInformation = new ObservableCollection<InputEntityViewModel>
-            {
-                new InputEntityViewModel("ZonaUnidad", new ZonaUnidadDataGrid(EntitiesCollections), EntityType.ZonaUnidad),
-                //new InputEntityViewModel("ZonaEspecial", new EspecialZonesDataGrid(EntitiesCollections), EntityType.Zone),
-                new InputEntityViewModel("ZonaPeriodo", new PeriodicZonesDataGrid(EntitiesCollections), EntityType.PeriodicZone),
-              //  new InputEntityViewModel("ZonaRecurso", new ZonesPlantsPanel(EntitiesCollections), EntityType.Zone),
-
-                
-            };
-            InputGroups.Add(new InputGroupViewModel("Zonas de Seguridad", entitiesInformation, new Uri(@"../Images/Zones2.png", UriKind.RelativeOrAbsolute)));
-
-            InputEntitiesTreeView.ItemsSource = InputGroups;
-        }
+       
 
 
 
@@ -791,7 +689,7 @@ namespace DHOG_WPF
                                   
             if (NumeroTrees == 0)
             {
-                CreateOutputGroups(1);
+                //CreateOutputGroups(1);
                 NumeroTrees++;
                 List<EntityType> ColeccionUpdate = new List<EntityType>()
                 {
@@ -1078,9 +976,15 @@ namespace DHOG_WPF
             CloseAllTabs();
             executionDialog.ShowDialog();
             var a = executionDialog.numScenarios;
+            
             NumeroTrees = 0;
             //OutputEntitiesTreeView.SelectedItem = true;
-           CreateOutputGroups(1);
+            if (executionDialog.Ejecutado == 1) 
+            {
+                if (dhogDataBaseViewModel.TipoBD == "Sql Server")  DataBaseManager.ExecuteQuery_Output("Exec dbo.[CrearVistas]");
+                CreateOutputGroups(1);
+            }
+              
         }
 
         private void RutasMenuItem_Click(object sender, Telerik.Windows.RadRoutedEventArgs e)
